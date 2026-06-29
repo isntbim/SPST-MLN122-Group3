@@ -181,6 +181,18 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
     }
   };
 
+  // --- Slide 8: Balance Scale ---
+  const [isScaleBalanced, setIsScaleBalanced] = useState(false);
+  const [scaleAngle, setScaleAngle] = useState(-12);
+
+  // --- Slide 9: Integration Roadmap ---
+  const [roadmapLayers, setRoadmapLayers] = useState({
+    vimo: false,
+    vungmien: false,
+    nganhan: false
+  });
+  const [roadmapTooltip, setRoadmapTooltip] = useState('Bấm chọn từng cấp độ lồng ghép ở biểu đồ để xem phương thức thực hành.');
+
   // ==============================================
   // UNIFIED REINFORCEMENT POLLS DATA
   // ==============================================
@@ -255,14 +267,25 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
     },
     8: {
       correct: 'b',
-      question: 'Mối quan hệ giữa "Tăng trưởng kinh tế" và "Tiến bộ công bằng xã hội" ở nước ta được tiến hành như thế nào?',
+      question: 'Theo đoạn trích, tiến bộ và công bằng xã hội đóng vai trò như thế nào đối với nền kinh tế thị trường định hướng XHCN?',
       options: [
-        { key: 'a', text: 'A. Đợi đất nước rất giàu rồi mới giải quyết an sinh xã hội' },
-        { key: 'b', text: 'B. Thực hiện ngay trong từng chính sách, từng giai đoạn phát triển kinh tế' },
-        { key: 'c', text: 'C. Triệt tiêu hoàn toàn tăng trưởng để giữ xã hội bình quân chủ nghĩa' }
+        { key: 'a', text: 'A. Chỉ là mục tiêu cuối cùng sau khi nền kinh tế đã phát triển rất giàu mạnh' },
+        { key: 'b', text: 'B. Vừa là điều kiện bảo đảm sự phát triển bền vững, vừa là mục tiêu thể hiện bản chất tốt đẹp của chế độ' },
+        { key: 'c', text: 'C. Chỉ là giải pháp tình thế ngắn hạn để giải quyết mâu thuẫn xã hội tạm thời' }
       ],
-      feedbackCorrect: 'Đúng! [Mục 5.1.3]: Gắn tăng trưởng với công bằng xã hội trực tiếp trong từng chính sách chính là thuộc tính ưu việt nhất.',
-      feedbackIncorrect: 'Chưa chính xác! Thử suy luận lại nội dung học phần để có quyết định đúng đắn.'
+      feedbackCorrect: 'Đúng! [Mục 5.1.3]: Tiến bộ và công bằng xã hội đóng vai trò kép: vừa là điều kiện bảo đảm sự phát triển bền vững, vừa là mục tiêu thể hiện bản chất chế độ.',
+      feedbackIncorrect: 'Chưa chính xác! Hãy suy luận lại vai trò kép của công bằng xã hội đối với sự phát triển bền vững.'
+    },
+    9: {
+      correct: 'b',
+      question: 'Việc thực hiện tiến bộ và công bằng xã hội ở nước ta cần phải được lồng ghép như thế nào?',
+      options: [
+        { key: 'a', text: 'A. Đợi kinh tế đạt mức phát triển cao mới quay lại giải quyết các vấn đề xã hội hoặc làm từ thiện' },
+        { key: 'b', text: 'B. Phải được lồng ghép ngay trong từng chính sách, chiến lược, quy hoạch, kế hoạch và từng giai đoạn phát triển' },
+        { key: 'c', text: 'C. Chỉ lồng ghép vào hoạt động của các doanh nghiệp và tổ chức phi chính phủ tự phát' }
+      ],
+      feedbackCorrect: 'Đúng! [Mục 5.1.3]: Gắn tăng trưởng với công bằng xã hội phải thực hiện "ngay trong từng bước đi và từng chính sách phát triển", không chờ đợi.',
+      feedbackIncorrect: 'Chưa chính xác! Xem kỹ lại phương thức lồng ghép tiến bộ xã hội "ngay trong từng bước đi" đã phân tích.'
     }
   };
 
@@ -895,33 +918,190 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 8: TĂNG TRƯỞNG & CÂN BẰNG */}
+            {/* SLIDE 8: TĂNG TRƯỞNG & CÂN BẰNG - PHẦN 1: BẢN CHẤT & VAI TRÒ KÉP */}
             {currentSlide === 8 && (
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
-                    <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-sm font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần C)</span>
+                    <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-sm font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần C1)</span>
                     <h2 className="font-display text-4xl font-black text-slate-100">
-                      Mối quan hệ biện chứng giữa Tăng trưởng &amp; Công bằng xã hội
+                      Tăng trưởng Kinh tế &amp; Công bằng xã hội: Bản chất &amp; Vai trò kép
                     </h2>
                   </div>
-                  <p className="text-base text-slate-400 italic mb-6">
-                    [Khung lý luận vĩ mô]: Thực hiện gắn tăng trưởng với tiến bộ xã hội ngay trong từng bước đi và từng chính sách.
+                  <p className="text-base text-slate-400 italic mb-4">
+                    [Khung lý luận vĩ mô]: Phân tích lý do vì sao tiến bộ và công bằng xã hội là thuộc tính sống còn của mô hình Việt Nam.
                   </p>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto py-2">
-                    <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-8 shadow-xl">
-                      <h4 className="text-base font-black text-vngold-400 uppercase tracking-widest mb-3">Thuộc tính bản chất quan trọng</h4>
-                      <p className="text-sm sm:text-base text-slate-205 leading-relaxed">
-                        Không đợi kinh tế phát triển cao rồi mới thực hiện công bằng xã hội; cũng không hy sinh công bằng xã hội để chạy theo tăng trưởng kinh tế thuần túy. Sự kết hợp hữu cơ này là bảo chứng phát triển bền vững và nhân văn của chế độ.
-                      </p>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-auto py-2 items-center">
+                    <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
+                      <div>
+                        <h4 className="text-sm font-black text-vngold-400 uppercase tracking-widest mb-1.5 flex items-center">
+                          <i className="fa-solid fa-seedling mr-1.5 text-vngold-400"></i>Đặt vấn đề &amp; Bản chất chế độ
+                        </h4>
+                        <p className="text-xs sm:text-sm text-slate-305 leading-relaxed font-semibold">
+                          Chúng ta không đi theo con đường tư bản chủ nghĩa - tức là chấp nhận đánh đổi phân hóa giàu nghèo cực đoan, "bánh mì lớn trước rồi chia sau". Ở Việt Nam, phát triển kinh tế là để phục vụ nhân dân, vì con người.
+                        </p>
+                      </div>
+                      
+                      <div className="border-t border-slate-850 pt-3">
+                        <h4 className="text-sm font-black text-vnemerald-500 uppercase tracking-widest mb-1.5 flex items-center">
+                          <i className="fa-solid fa-shuffle mr-1.5 text-vnemerald-500"></i>Vai trò kép: Điều kiện &amp; Mục tiêu
+                        </h4>
+                        <ul className="text-xs sm:text-sm text-slate-355 space-y-2 pl-4 list-disc">
+                          <li><strong>Về mặt điều kiện:</strong> Là nền tảng ổn định xã hội, ngăn ngừa bất bình đẳng sâu sắc gây khủng hoảng trì trệ.</li>
+                          <li><strong>Về mặt mục tiêu:</strong> Thể hiện bản chất tốt đẹp của CNXH, hiện thực hóa từng bước trong thời kỳ quá độ.</li>
+                        </ul>
+                      </div>
                     </div>
-                    <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-8 flex flex-col justify-center items-center text-center shadow-xl">
-                      <i className="fa-solid fa-scale-unbalanced text-6xl text-vnemerald-500 mb-4 animate-wave"></i>
-                      <h4 className="text-lg font-black text-slate-202 mb-3">Phương thức thực hành</h4>
-                      <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-sm">
-                        Lồng ghép chính sách xã hội, xóa đói giảm nghèo, y tế, giáo dục trực tiếp vào các quy hoạch, chiến lược phát triển kinh tế vĩ mô quốc gia.
-                      </p>
+
+                    <div className="bg-slate-950/40 border border-slate-850 rounded-3xl p-6 flex flex-col items-center justify-between min-h-[280px] shadow-xl text-center">
+                      <div className="w-full flex-grow flex items-center justify-center relative overflow-visible h-36">
+                        {/* Interactive Balance Scale SVG */}
+                        <svg viewBox="0 0 300 160" className="w-full max-w-[280px] h-auto select-none overflow-visible">
+                          <path d="M150,110 L150,40" stroke="#475569" strokeWidth="6" strokeLinecap="round"/>
+                          <polygon points="150,105 130,135 170,135" fill="#475569"/>
+                          
+                          <g style={{ transform: `rotate(${scaleAngle}deg)`, transformOrigin: '150px 40px', transition: 'transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)' }}>
+                            <line x1="60" y1="40" x2="240" y2="40" stroke="#94a3b8" strokeWidth="5" strokeLinecap="round"/>
+                            <circle cx="150" cy="40" r="6" fill="#fbbf24" stroke="#ffffff" strokeWidth="1.5"/>
+                            
+                            <g>
+                              <line x1="60" y1="40" x2="40" y2="90" stroke="#f43f5e" strokeWidth="2"/>
+                              <line x1="60" y1="40" x2="80" y2="90" stroke="#f43f5e" strokeWidth="2"/>
+                              <path d="M30,90 L90,90 Q60,110 30,90" fill="#f43f5e" opacity="0.8"/>
+                              <text x="60" y="85" fontSize="7" fontWeight="900" fill="#ffffff" textAnchor="middle">TĂNG TRƯỞNG</text>
+                            </g>
+                            
+                            <g>
+                              <line x1="240" y1="40" x2="220" y2="90" stroke="#10b981" strokeWidth="2"/>
+                              <line x1="240" y1="40" x2="260" y2="90" stroke="#10b981" strokeWidth="2"/>
+                              <path d="M210,90 L270,90 Q240,110 210,90" fill="#10b981" opacity="0.8"/>
+                              <text x="240" y="85" fontSize="7" fontWeight="900" fill="#ffffff" textAnchor="middle">CÔNG BẰNG</text>
+                            </g>
+                          </g>
+                        </svg>
+                        
+                        {isScaleBalanced && (
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-vnemerald-955 border border-vnemerald-500 text-vnemerald-300 font-black text-xs px-4 py-1.5 rounded-full shadow-lg animate-pulse uppercase tracking-wider">
+                            Biện chứng hài hòa
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="w-full space-y-3">
+                        <button 
+                          onClick={() => {
+                            setIsScaleBalanced(true);
+                            const tl = gsap.timeline();
+                            tl.to(setScaleAngle, { duration: 0.3, value: 8, onUpdate: () => setScaleAngle(Math.round(setScaleAngle)) })
+                              .to(setScaleAngle, { duration: 0.3, value: -4 })
+                              .to(setScaleAngle, { duration: 0.3, value: 2 })
+                              .to(setScaleAngle, { duration: 0.3, value: 0 });
+                          }}
+                          className={`px-5 py-2 text-xs font-black rounded-xl uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                            isScaleBalanced 
+                              ? 'bg-vnemerald-950/40 border border-vnemerald-500 text-vnemerald-400' 
+                              : 'bg-vnred-600 hover:bg-vnred-700 text-white shadow-md'
+                          }`}
+                        >
+                          {isScaleBalanced ? '✓ Đã thiết lập Cân bằng' : 'Cân bằng Cán cân Kinh tế'}
+                        </button>
+                        
+                        <p className="text-[11px] text-slate-400 font-semibold italic">
+                          {isScaleBalanced 
+                            ? 'Kinh tế tăng trưởng bền vững nhờ nền tảng tiến bộ công bằng xã hội được bảo đảm.'
+                            : 'Cán cân đang lệch về tăng trưởng thuần túy. Bấm nút để cân đối kinh tế.'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <button 
+                  onClick={() => setIsFlipped(true)}
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider"
+                >
+                  <i className="fa-solid fa-rotate text-sm"></i>
+                  <span>Luyện tập: Câu hỏi củng cố</span>
+                </button>
+              </div>
+            )}
+
+            {/* SLIDE 9: TĂNG TRƯỞNG & CÂN BẰNG - PHƯƠNG THỨC THỰC HIỆN */}
+            {currentSlide === 9 && (
+              <div className="flex flex-col h-full justify-between">
+                <div>
+                  <div className="flex items-center space-x-3 mb-1">
+                    <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-sm font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần C2)</span>
+                    <h2 className="font-display text-4xl font-black text-slate-100">
+                      Phương thức hiện thực hóa Công bằng xã hội
+                    </h2>
+                  </div>
+                  <p className="text-base text-slate-400 italic mb-4">
+                    [Khung lý luận vĩ mô]: Cơ chế lồng ghép công bằng xã hội trực tiếp vào từng bước đi của nền kinh tế thị trường.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-auto py-2 items-center">
+                    <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
+                      <div>
+                        <h4 className="text-sm font-black text-vngold-400 uppercase tracking-widest mb-1.5 flex items-center">
+                          <i className="fa-solid fa-check-double mr-1.5 text-vngold-400"></i>Thực hiện ngay trong từng bước đi
+                        </h4>
+                        <p className="text-xs sm:text-sm text-slate-305 leading-relaxed font-semibold">
+                          Chúng ta không đợi đến khi kinh tế thật giàu rồi mới đi giải quyết các vấn đề xã hội hay làm từ thiện. Công bằng xã hội phải đi đôi, đồng hành cùng sự phát triển vĩ mô ngay từ đầu.
+                        </p>
+                      </div>
+                      
+                      <div className="border-t border-slate-850 pt-3">
+                        <h4 className="text-sm font-black text-vnemerald-500 uppercase tracking-widest mb-1.5 flex items-center">
+                          <i className="fa-solid fa-building-circle-check mr-1.5 text-vnemerald-500"></i>Ví dụ Thực tế (Khu công nghiệp)
+                        </h4>
+                        <p className="text-xs sm:text-sm text-slate-355 leading-relaxed">
+                          Khi quy hoạch một khu công nghiệp lớn (phát triển kinh tế), Nhà nước đồng thời quy hoạch xây dựng ngay khu nhà ở xã hội cho công nhân và trường học cho con em họ (chính sách xã hội). Kinh tế phát triển đến đâu, đời sống nhân dân tăng lên đến đó.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-950/40 border border-slate-855 rounded-3xl p-6 flex flex-col justify-between min-h-[280px] shadow-xl text-left">
+                      <div>
+                        <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Sơ đồ 3 Cấp độ Lồng ghép:</h4>
+                        
+                        <div className="space-y-2">
+                          {[
+                            { key: 'vimo', label: '1. Chính sách kinh tế vĩ mô', text: 'Tích hợp phân phối công bằng các yếu tố sản xuất và cơ hội phát triển đồng đều cho mọi thành phần kinh tế.' },
+                            { key: 'vungmien', label: '2. Chiến lược & Quy hoạch vùng', text: 'Phát triển cân đối giữa các địa phương, hỗ trợ vùng nghèo, xây dựng cơ sở hạ tầng an sinh đồng bộ.' },
+                            { key: 'nganhan', label: '3. Kế hoạch ngắn hạn & Từng giai đoạn', text: 'Lồng ghép chỉ tiêu xóa đói giảm nghèo, giáo dục, y tế trực tiếp vào các kế hoạch phát triển kinh tế hàng năm.' }
+                          ].map(layer => (
+                            <button
+                              key={layer.key}
+                              onClick={() => {
+                                setRoadmapLayers(prev => ({ ...prev, [layer.key]: true }));
+                                setRoadmapTooltip(`<strong>${layer.label}:</strong> ${layer.text}`);
+                              }}
+                              className={`w-full text-left p-3 rounded-2xl border transition-all duration-200 flex items-center justify-between cursor-pointer ${
+                                roadmapLayers[layer.key]
+                                  ? 'border-vnemerald-500 bg-vnemerald-955 text-slate-100 shadow-[0_0_10px_rgba(16,185,129,0.15)]'
+                                  : 'border-slate-800 bg-slate-900 text-slate-450 hover:border-slate-700 hover:text-slate-300'
+                              }`}
+                            >
+                              <span className="text-xs font-bold">{layer.label}</span>
+                              <i className={`fa-solid ${roadmapLayers[layer.key] ? 'fa-circle-check text-vnemerald-500' : 'fa-circle-question text-slate-600'}`}></i>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div 
+                        className="mt-3 p-3 bg-slate-950 border border-slate-800 rounded-2xl text-[11px] sm:text-xs text-slate-300 transition-all duration-305 min-h-[60px]"
+                        dangerouslySetInnerHTML={{ __html: roadmapTooltip }}
+                      />
+                      
+                      {Object.values(roadmapLayers).every(Boolean) && (
+                        <div className="mt-2 text-center text-xs font-black text-vngold-400 uppercase tracking-widest animate-pulse flex items-center justify-center space-x-1.5 bg-vngold-955 border border-vngold-600/30 p-2 rounded-xl">
+                          <i className="fa-solid fa-sync text-sm animate-spin"></i>
+                          <span>Đồng bộ hóa thành công: Kinh tế ⇄ An sinh</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -947,7 +1127,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 <div>
                   <div className="flex items-center space-x-2 mb-3">
                     <span className="bg-vnemerald-500/10 text-vnemerald-400 border border-vnemerald-500/20 text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-                      Câu hỏi ôn tập củng cố bài học (Slide {currentSlide}/8)
+                      Câu hỏi ôn tập củng cố bài học (Slide {currentSlide}/9)
                     </span>
                   </div>
                   
