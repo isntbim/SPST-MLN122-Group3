@@ -11,31 +11,33 @@ export default function App() {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [activeModal, setActiveModal] = useState(null); // 'mindmap' | 'flashcards' | 'chatbot' | 'integrity' | null
   
-  const totalSlides = 9;
+  const totalSlides = 10;
 
   // Presenter tips & estimations (mapped to current slide)
   const coachTips = {
     1: 'Giới thiệu đại diện nhóm và dẫn dắt bằng 3 câu hỏi khởi động để tạo không khí thảo luận sôi nổi cho lớp học.',
-    2: 'Lướt nhanh qua khái niệm chính. Nhấn mạnh đây là bài toán sáng tạo độc lập của Việt Nam để tạo tiền đề cho Tính tất yếu.',
-    3: 'Mục 5.1.2: Hãy nhấn chuột vào vòng tròn La bàn để kim la bàn xoay 360 độ, phát sóng radar mở rộng 3 lý do cốt lõi của tính tất yếu.',
-    4: 'Mục 5.1.2: Sử dụng thanh trượt để khớp nối bánh răng Lực lượng sản xuất thực tế & Quan hệ sản xuất, đồng thời click bật 3 chỉ báo sức mạnh thị trường để kích hoạt động cơ tăng trưởng.',
-    5: 'Mục 5.1.2: Tương tác trực tiếp trên Cây khát vọng. Click từng quả Dân giàu, Nước mạnh... để thuyết minh mong ước thật sự của nhân dân.',
-    6: 'Tóm lược đặc trưng 1 & 2: Mục tiêu là phát triển LLSX nâng cao đời sống dân cư; Cơ cấu sở hữu bình đẳng nhưng Kinh tế nhà nước giữ vai trò then chốt.',
-    7: 'Tóm lược đặc trưng 3 & 4: Vai trò điều tiết vĩ mô của Nhà nước do Đảng lãnh đạo để sửa chữa khuyết tật tự phát; Phân phối đa dạng nâng đỡ nhóm yếu thế.',
-    8: 'Tóm lược đặc trưng 5 (Phần 1): Mối quan hệ gắn kết giữa tăng trưởng kinh tế với công bằng xã hội; giải thích vai trò kép của tiến bộ xã hội.',
-    9: 'Tóm lược đặc trưng 5 (Phần 2): Đi sâu vào phương thức thực hiện - lồng ghép công bằng xã hội vào từng quy hoạch, chính sách vĩ mô ngay từ đầu.'
+    2: 'Mục 5.1.1 (Phần 1): Trình bày định nghĩa cốt lõi. Hãy click chuyển đổi tab Phổ biến / Đặc thù để phân tích bản chất biện chứng Cái chung & Cái riêng.',
+    3: 'Mục 5.1.1 (Phần 2): Trình bày 3 Cột trụ cấu thành (A, B, C - nhấn để mở chi tiết) và nêu bật tính nhân dân, lực lượng quyết định thành bại của mô hình.',
+    4: 'Mục 5.1.2: Hãy nhấn chuột vào vòng tròn La bàn để kim la bàn xoay 360 độ, phát sóng radar mở rộng 3 lý do cốt lõi của tính tất yếu.',
+    5: 'Mục 5.1.2: Sử dụng thanh trượt để khớp nối bánh răng Lực lượng sản xuất thực tế & Quan hệ sản xuất, đồng thời click bật 3 chỉ báo sức mạnh thị trường để kích hoạt động cơ tăng trưởng.',
+    6: 'Mục 5.1.2: Tương tác trực tiếp trên Cây khát vọng. Click từng quả Dân giàu, Nước mạnh... để thuyết minh mong ước thật sự của nhân dân.',
+    7: 'Tóm lược đặc trưng 1 & 2: Mục tiêu là phát triển LLSX nâng cao đời sống dân cư; Cơ cấu sở hữu bình đẳng nhưng Kinh tế nhà nước giữ vai trò then chốt.',
+    8: 'Tóm lược đặc trưng 3 & 4: Vai trò điều tiết vĩ mô của Nhà nước do Đảng lãnh đạo để sửa chữa khuyết tật tự phát; Phân phối đa dạng nâng đỡ nhóm yếu thế.',
+    9: 'Tóm lược đặc trưng 5 (Phần 1): Mối quan hệ gắn kết giữa tăng trưởng kinh tế với công bằng xã hội; giải thích vai trò kép của tiến bộ xã hội.',
+    10: 'Tóm lược đặc trưng 5 (Phần 2): Đi sâu vào phương thức thực hiện - lồng ghép công bằng xã hội vào từng quy hoạch, chính sách vĩ mô ngay từ đầu.'
   };
 
   const timeEstimations = {
     1: '45 Giây',
-    2: '30 Giây',
-    3: '60 Giây',
+    2: '45 Giây',
+    3: '45 Giây',
     4: '60 Giây',
     5: '60 Giây',
-    6: '30 Giây',
+    6: '60 Giây',
     7: '30 Giây',
-    8: '45 Giây',
-    9: '45 Giây'
+    8: '30 Giây',
+    9: '45 Giây',
+    10: '45 Giây'
   };
 
   const handleNextSlide = () => {
@@ -145,14 +147,15 @@ export default function App() {
                 <div className="space-y-1.5 max-h-[320px] overflow-y-auto pr-1">
                   {[
                     '1. Trang bìa & Khảo sát',
-                    '2. 5.1.1 Khái niệm (Placeholder)',
-                    '3. 5.1.2 Tất yếu (La bàn)',
-                    '4. 5.1.2 Tất yếu (Động lực kép)',
-                    '5. 5.1.2 Tất yếu (Cây Khát vọng)',
-                    '6. Đặc trưng: Mục tiêu & Sở hữu',
-                    '7. Đặc trưng: Quản lý & Phân phối',
-                    '8. Đặc trưng: Tăng trưởng & Cân bằng (P1)',
-                    '9. Đặc trưng: Tăng trưởng & Cân bằng (P2)'
+                    '2. 5.1.1 Khái niệm: Định nghĩa & Bản chất',
+                    '3. 5.1.1 Khái niệm: Cấu thành & Lực lượng',
+                    '4. 5.1.2 Tất yếu (La bàn)',
+                    '5. 5.1.2 Tất yếu (Động lực kép)',
+                    '6. 5.1.2 Tất yếu (Cây Khát vọng)',
+                    '7. Đặc trưng: Mục tiêu & Sở hữu',
+                    '8. Đặc trưng: Quản lý & Phân phối',
+                    '9. Đặc trưng: Tăng trưởng & Cân bằng (P1)',
+                    '10. Đặc trưng: Tăng trưởng & Cân bằng (P2)'
                   ].map((title, idx) => (
                     <button
                       key={idx}

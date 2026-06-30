@@ -9,6 +9,10 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
   const containerRef = useRef(null);
   const stageRef = useRef(null);
   const [isFlipped, setIsFlipped] = useState(false);
+  
+  // --- Slide 2: Khái niệm 5.1.1 States ---
+  const [slide2Tab, setSlide2Tab] = useState('chung'); // 'chung' | 'rieng'
+  const [activePillar, setActivePillar] = useState(1); // 1 (vận hành), 2 (mục tiêu), 3 (quản lý)
 
   // Auto-scaling logic (locks fixed 1280x720 stage inside 16:9 canvas parent)
   const handleResize = () => {
@@ -47,6 +51,11 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
     setScaleAngle(-12);
     setRoadmapLayers({ vimo: false, vungmien: false, nganhan: false });
     setRoadmapTooltip('Bấm chọn từng cấp độ lồng ghép ở biểu đồ để xem phương thức thực hành.');
+    
+    // Reset Slide 2 states
+    setSlide2Tab('chung');
+    setActivePillar(1);
+    
     setTimeout(handleResize, 30);
   }, [currentSlide]);
 
@@ -56,7 +65,19 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       gsap.from('#title-header', { opacity: 0, y: -45, duration: 1, ease: 'power3.out' });
       gsap.from('#warmup-container', { opacity: 0, scale: 0.95, duration: 0.8, delay: 0.2, ease: 'back.out(1.2)' });
     }
-    if (currentSlide === 8) {
+    if (currentSlide === 2) {
+      gsap.from('#slide2-title', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide2-definition', { opacity: 0, y: 35, duration: 0.9, ease: 'power3.out', delay: 0.1 });
+      gsap.from('#slide2-dual-nature', { opacity: 0, x: -40, duration: 0.9, ease: 'power3.out', delay: 0.25 });
+      gsap.from('#slide2-quiz-btn', { opacity: 0, scale: 0.9, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+    }
+    if (currentSlide === 3) {
+      gsap.from('#slide3-title', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide3-pillars', { opacity: 0, y: 35, duration: 0.9, ease: 'power3.out', delay: 0.1 });
+      gsap.from('#slide3-bottom-banner', { opacity: 0, y: 25, duration: 0.7, ease: 'power2.out', delay: 0.25 });
+      gsap.from('#slide3-quiz-btn', { opacity: 0, scale: 0.9, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+    }
+    if (currentSlide === 9) {
       // Set initial scale positions on load to prevent any shift or disconnect
       gsap.set('#scale-beam', { rotation: -12, svgOrigin: '150 40' });
       gsap.set('#left-pan', { rotation: 12, svgOrigin: '60 40' });
@@ -64,6 +85,26 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       gsap.set(['#weight-1', '#weight-2', '#weight-3'], { opacity: 0, y: -120 });
     }
   }, { dependencies: [currentSlide], scope: containerRef });
+
+  // Slide 2 Tab content entrance animation
+  useGSAP(() => {
+    if (currentSlide === 2) {
+      gsap.fromTo('#slide2-tab-content',
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
+      );
+    }
+  }, { dependencies: [slide2Tab], scope: containerRef });
+
+  // Slide 3 Accordion item list stagger animation
+  useGSAP(() => {
+    if (currentSlide === 3 && activePillar > 0) {
+      gsap.fromTo(`#slide2-pillar-detail-${activePillar} li`,
+        { opacity: 0, x: -12 },
+        { opacity: 1, x: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out' }
+      );
+    }
+  }, { dependencies: [activePillar], scope: containerRef });
 
   // ==============================================
   // INTERACTIVE GRAPHICS STATES
@@ -213,7 +254,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       .to('#right-pan', { rotation: 0, svgOrigin: '240 40', duration: 1.2, ease: 'elastic.out(1.2, 0.4)' }, '<');
   };
 
-  // --- Slide 9: Integration Roadmap ---
+  // --- Slide 10: Integration Roadmap ---
   const [roadmapLayers, setRoadmapLayers] = useState({
     vimo: false,
     vungmien: false,
@@ -228,17 +269,30 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
   const slidePolls = {
     2: {
-      correct: 'b',
-      question: 'Đâu là đặc trưng cốt lõi để phân biệt KTTT định hướng XHCN ở nước ta với các nền KTTT tư bản khác?',
+      correct: 'c',
+      question: 'Nền kinh tế thị trường định hướng XHCN ở Việt Nam vận hành đầy đủ và đồng bộ theo yếu tố nào trước tiên?',
       options: [
-        { key: 'a', text: 'A. Vận hành theo các quy luật thị trường' },
-        { key: 'b', text: 'B. Hướng tới ấm no hạnh phúc toàn dân, có sự quản lý của Nhà nước do Đảng lãnh đạo' },
-        { key: 'c', text: 'C. Đa dạng hóa hình thức sở hữu' }
+        { key: 'a', text: 'A. Các chỉ thị hành chính từ cơ quan quản lý' },
+        { key: 'b', text: 'B. Mô hình kế hoạch hóa tập trung bao cấp' },
+        { key: 'c', text: 'C. Các quy luật của thị trường' },
+        { key: 'd', text: 'D. Các quy định áp đặt từ thị trường quốc tế' }
       ],
-      feedbackCorrect: 'Đúng! [Mục 5.1.1]: Lấy con người và an sinh xã hội làm trọng tâm chính là nét đặc trưng riêng biệt sâu sắc nhất của mô hình nước ta.',
-      feedbackIncorrect: 'Chưa chính xác! Thử suy luận lại nội dung học phần để có quyết định đúng đắn.'
+      feedbackCorrect: 'Đúng! [Mục 5.1.1]: Đã là một nền kinh tế thị trường thì thuộc tính cơ bản và tiên quyết là phải tôn trọng, vận hành tuân theo các quy luật khách quan của thị trường (như quy luật cung cầu, quy luật giá trị, quy luật cạnh tranh) chứ không quản lý bằng mệnh lệnh hành chính hay bao cấp như mô hình cũ.',
+      feedbackIncorrect: 'Chưa chính xác! Đã là một nền kinh tế thị trường thì thuộc tính cơ bản và tiên quyết là phải vận hành tuân theo các quy luật khách quan của thị trường.'
     },
     3: {
+      correct: 'b',
+      question: 'Ai là lực lượng quyết định, vừa là chủ thể thực hiện vừa là đối tượng thụ hưởng thành quả của nền kinh tế thị trường định hướng XHCN tại Việt Nam?',
+      options: [
+        { key: 'a', text: 'A. Các nhà đầu tư nước ngoài' },
+        { key: 'b', text: 'B. Nhân dân' },
+        { key: 'c', text: 'C. Các tập đoàn kinh tế tư nhân lớn' },
+        { key: 'd', text: 'D. Các cơ quan quản lý nhà nước vĩ mô' }
+      ],
+      feedbackCorrect: 'Đúng! [Mục 5.1.1]: Bản chất của mô hình kinh tế thị trường định hướng XHCN mang tính nhân dân sâu sắc. Thành công của mô hình phụ thuộc vào sự nỗ lực xây dựng của toàn thể nhân dân, đồng thời đích đến cuối cùng là phục vụ cho lợi ích của đại đa số quần chúng nhân dân (hướng tới xã hội dân giàu, nước mạnh, dân chủ, công bằng, văn minh).',
+      feedbackIncorrect: 'Chưa chính xác! Bản chất của mô hình kinh tế thị trường định hướng XHCN mang tính nhân dân sâu sắc. Hãy thử chọn lại!'
+    },
+    4: {
       correct: 'a',
       question: 'Vì sao sự lựa chọn kinh tế thị trường định hướng XHCN lại được xem là "nhất quán"?',
       options: [
@@ -249,7 +303,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       feedbackCorrect: 'Đúng! [Mục 5.1.2]: Lựa chọn này là nhất quán xuyên suốt, không hề mang tính nhất thời, chắp vá hay đối phó.',
       feedbackIncorrect: 'Chưa chính xác! Thử suy luận lại nội dung học phần để có quyết định đúng đắn.'
     },
-    4: {
+    5: {
       correct: 'b',
       question: 'Vì sao động cơ "Cạnh tranh lành mạnh" lại cần thiết cho tính ưu việt của thị trường?',
       options: [
@@ -260,7 +314,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       feedbackCorrect: 'Đúng! [Mục 5.1.2]: Cạnh tranh buộc doanh nghiệp liên tục cải tiến và nâng cao công suất, thể hiện tính ưu việt của thị trường.',
       feedbackIncorrect: 'Chưa chính xác! Thử suy luận lại nội dung học phần để có quyết định đúng đắn.'
     },
-    5: {
+    6: {
       correct: 'a',
       question: 'Vì sao "Công bằng xã hội" lại được đính kết chung với khát vọng "Dân giàu" trong mô hình kinh tế này?',
       options: [
@@ -271,7 +325,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       feedbackCorrect: 'Đúng! [Mục 5.1.2]: Công bằng xã hội giúp duy trì lòng tin, ngăn ngừa bất bình đẳng sâu sắc, giữ vững bản chất XHCN.',
       feedbackIncorrect: 'Chưa chính xác! Thử suy luận lại nội dung học phần để có quyết định đúng đắn.'
     },
-    6: {
+    7: {
       correct: 'c',
       question: 'Thành phần kinh tế nào nắm giữ vai trò "chủ đạo" dẫn dắt vĩ mô trong cơ cấu nhiều thành phần?',
       options: [
@@ -282,7 +336,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       feedbackCorrect: 'Đúng! [Mục 5.1.3]: Kinh tế nhà nước giữ vai trò chủ đạo là lực lượng then chốt để ổn định vĩ mô và định hướng XHCN.',
       feedbackIncorrect: 'Chưa chính xác! Thử suy luận lại nội dung học phần để có quyết định đúng đắn.'
     },
-    7: {
+    8: {
       correct: 'b',
       question: 'Đâu là hình thức phân phối phản ánh đậm nét nhất định hướng XHCN bảo đảm công bằng xã hội?',
       options: [
@@ -293,7 +347,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       feedbackCorrect: 'Đúng! [Mục 5.1.3]: Phối hợp chặt chẽ giữa phân phối theo lao động và hệ thống an sinh xã hội chính là chìa khóa định hướng.',
       feedbackIncorrect: 'Chưa chính xác! Thử suy luận lại nội dung học phần để có quyết định đúng đắn.'
     },
-    8: {
+    9: {
       correct: 'b',
       question: 'Theo đoạn trích, tiến bộ và công bằng xã hội đóng vai trò như thế nào đối với nền kinh tế thị trường định hướng XHCN?',
       options: [
@@ -304,7 +358,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       feedbackCorrect: 'Đúng! [Mục 5.1.3]: Tiến bộ và công bằng xã hội đóng vai trò kép: vừa là điều kiện bảo đảm sự phát triển bền vững, vừa là mục tiêu thể hiện bản chất chế độ.',
       feedbackIncorrect: 'Chưa chính xác! Hãy suy luận lại vai trò kép của công bằng xã hội đối với sự phát triển bền vững.'
     },
-    9: {
+    10: {
       correct: 'b',
       question: 'Việc thực hiện tiến bộ và công bằng xã hội ở nước ta cần phải được lồng ghép như thế nào?',
       options: [
@@ -392,13 +446,13 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                                   <div className="flex space-x-3 w-full sm:w-auto">
                                     <button 
                                       onClick={() => handleWarmupVote(item.id, 'yes')}
-                                      className="px-6 py-3 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-black text-sm rounded-xl transition-all shadow-md"
+                                      className="px-6 py-3 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-black text-sm rounded-xl transition-all shadow-md cursor-pointer"
                                     >
                                       👍 Có/Đồng ý
                                     </button>
                                     <button 
                                       onClick={() => handleWarmupVote(item.id, 'no')}
-                                      className="px-6 py-3 bg-vnred-600 hover:bg-vnred-700 text-white font-black text-sm rounded-xl transition-all shadow-md"
+                                      className="px-6 py-3 bg-vnred-600 hover:bg-vnred-700 text-white font-black text-sm rounded-xl transition-all shadow-md cursor-pointer"
                                     >
                                       👎 Không/Phân vân
                                     </button>
@@ -426,56 +480,97 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 2: KHÁI NIỆM */}
+            {/* SLIDE 2: KHÁI NIỆM - PHẦN 1 */}
             {currentSlide === 2 && (
               <div className="flex flex-col h-full justify-between">
                 <div>
-                  <div className="flex items-center space-x-3 mb-1">
-                    <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.1</span>
-                    <h2 className="font-display text-5xl font-black text-slate-100">
-                      Khái niệm Kinh tế thị trường định hướng XHCN
+                  <div id="slide2-title" className="flex items-center space-x-3 mb-1">
+                    <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-sm font-extrabold px-2.5 py-1 rounded">Mục 5.1.1 (Phần 1)</span>
+                    <h2 className="font-display text-4xl lg:text-5xl font-black text-slate-100">
+                      Định nghĩa &amp; Bản chất "Kép"
                     </h2>
                   </div>
-                  <p className="text-base text-slate-400 italic mb-8">
-                    [Khung lý luận vĩ mô]: Định nghĩa và những thuộc tính phổ quát - đặc thù của mô hình kinh tế Việt Nam.
+                  <p className="text-lg text-slate-400 italic mb-6">
+                    [Khung lý luận vĩ mô]: Định nghĩa cốt lõi và Tính biện chứng của mô hình kinh tế thị trường định hướng XHCN.
                   </p>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto">
-                    <div className="bg-slate-950/80 border border-slate-800 rounded-3xl p-8 flex flex-col justify-center items-center text-center shadow-xl">
-                      <i className="fa-solid fa-dna text-7xl text-vnred-600 mb-4 animate-pulse"></i>
-                      <h4 className="text-xl font-black text-slate-200 mb-3">Định nghĩa Cốt lõi</h4>
-                      <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-                        Là nền kinh tế vận hành đầy đủ, đồng bộ theo các quy luật của thị trường, đồng thời có sự quản lý của Nhà nước pháp quyền xã hội chủ nghĩa do Đảng Cộng sản Việt Nam lãnh đạo nhằm hướng tới mục tiêu tối cao vì hạnh phúc nhân dân.
-                      </p>
-                    </div>
-                    <div className="bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between shadow-xl">
-                      <div>
-                        <h4 className="text-base font-black text-vngold-400 uppercase tracking-widest mb-4">Đặc điểm cơ cấu mô hình</h4>
-                        <ul className="text-base sm:text-lg text-slate-300 space-y-4">
-                          <li className="flex items-start space-x-2.5">
-                            <i className="fa-regular fa-square-check text-vnemerald-500 mt-1"></i>
-                            <span>Vừa có những đặc trưng chung vốn có của nền kinh tế thị trường thế giới.</span>
-                          </li>
-                          <li className="flex items-start space-x-2.5">
-                            <i className="fa-regular fa-square-check text-vnemerald-500 mt-1"></i>
-                            <span>Vừa có những đặc trưng riêng phản ánh lịch sử xã hội Việt Nam.</span>
-                          </li>
-                          <li className="flex items-start space-x-2.5">
-                            <i className="fa-regular fa-square-check text-vnemerald-500 mt-1"></i>
-                            <span>Muốn thành công phải do toàn dân nỗ lực đồng tâm hiệp lực.</span>
-                          </li>
-                        </ul>
+                  {/* Row 1: Định nghĩa cốt lõi */}
+                  <div id="slide2-definition" className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 mb-6 shadow-lg relative overflow-hidden text-left">
+                    <div className="absolute top-0 left-0 w-1.5 bg-gradient-to-b from-vnred-600 to-vngold-400 h-full"></div>
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-vnred-950/80 p-2.5 rounded-xl text-vnred-500 border border-vnred-900/40 mt-1 flex-shrink-0">
+                        <i className="fa-solid fa-scale-balanced text-xl lg:text-2xl"></i>
                       </div>
-                      <div className="mt-5 bg-vnred-955/40 border border-vnred-900/50 p-4 rounded-2xl text-sm sm:text-base text-vnred-300 italic">
-                        Nội dung chi tiết của phần Khái niệm sẽ được tích hợp chính thức tại đây.
+                      <div>
+                        <h4 className="text-lg font-black text-vngold-400 uppercase tracking-widest mb-1">Định nghĩa Cốt lõi</h4>
+                        <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-medium">
+                          Nền kinh tế thị trường định hướng xã hội chủ nghĩa (XHCN) ở Việt Nam là nền kinh tế vận hành đầy đủ, đồng bộ theo các <span className="text-vngold-400 font-bold">quy luật của thị trường</span>, đồng thời hướng tới mục tiêu từng bước xác lập một xã hội <span className="text-vnemerald-450 font-bold">"Dân giàu, nước mạnh, dân chủ, công bằng, văn minh"</span>, dưới sự điều tiết của <span className="text-vnred-400 font-bold">Nhà nước pháp quyền XHCN</span> do <span className="text-vnred-400 font-bold">Đảng Cộng sản Việt Nam lãnh đạo</span>.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Row 2: Bản chất kép */}
+                  <div id="slide2-dual-nature" className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between text-left min-h-[220px]">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-lg font-black text-vngold-400 uppercase tracking-widest">Bản chất "Kép" của mô hình</h4>
+                        <span className="text-[10px] text-slate-500 font-semibold italic">Sự kết hợp biện chứng</span>
+                      </div>
+                      <p className="text-sm sm:text-base text-slate-400 mb-4">
+                        Sự kết hợp biện chứng giữa thuộc tính phổ biến của thị trường thế giới và điều kiện đặc thù tại Việt Nam:
+                      </p>
+                      
+                      {/* Custom Capsule Tabs */}
+                      <div className="flex bg-slate-900 border border-slate-800 p-1 rounded-xl mb-4 relative max-w-md mx-auto">
+                        <button 
+                          onClick={() => setSlide2Tab('chung')}
+                          className={`flex-1 text-center py-2.5 text-sm font-bold rounded-lg transition-all cursor-pointer ${
+                            slide2Tab === 'chung' 
+                              ? 'bg-vnred-600 text-white shadow-md' 
+                              : 'text-slate-400 hover:text-slate-200'
+                          }`}
+                        >
+                          Tính phổ biến (Cái chung)
+                        </button>
+                        <button 
+                          onClick={() => setSlide2Tab('rieng')}
+                          className={`flex-1 text-center py-2.5 text-sm font-bold rounded-lg transition-all cursor-pointer ${
+                            slide2Tab === 'rieng' 
+                              ? 'bg-vnred-600 text-white shadow-md' 
+                              : 'text-slate-400 hover:text-slate-200'
+                          }`}
+                        >
+                          Tính đặc thù (Cái riêng)
+                        </button>
+                      </div>
+
+                      {/* Content display with transition */}
+                      <div id="slide2-tab-content" className="bg-slate-900/50 border border-slate-850 rounded-xl p-4 min-h-[110px] text-sm sm:text-base text-slate-300">
+                        {slide2Tab === 'chung' ? (
+                          <div className="space-y-1.5">
+                            <span className="text-vnemerald-400 font-black text-xs uppercase tracking-wider block">Thuộc tính thị trường tự do</span>
+                            <p className="leading-relaxed">
+                              Vận hành đầy đủ theo các quy luật khách quan (Cung - cầu, giá trị, cạnh tranh, lưu thông tiền tệ). Đa dạng hóa hình thức sở hữu và các thành phần kinh tế, tự do liên kết kinh doanh lành mạnh trước pháp luật.
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="space-y-1.5">
+                            <span className="text-vnred-400 font-black text-xs uppercase tracking-wider block">Bối cảnh lịch sử xã hội VN</span>
+                            <p className="leading-relaxed">
+                              Gắn liền với điều kiện lịch sử, trình độ phát triển và hoàn cảnh chính trị - xã hội cụ thể. "Định hướng XHCN" là công cụ định hình thị trường, không bóp méo thị trường mà nhằm hướng đến phục vụ lợi ích của đại đa số nhân dân lao động.
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
                 
                 <button 
+                  id="slide2-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -483,8 +578,115 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 3: STRATEGIC COMPASS */}
+            {/* SLIDE 3: KHÁI NIỆM - PHẦN 2 */}
             {currentSlide === 3 && (
+              <div className="flex flex-col h-full justify-between -mt-5 -mb-5">
+                <div>
+                  <div id="slide3-title" className="flex items-center space-x-3 mb-1">
+                    <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-sm font-extrabold px-2.5 py-1 rounded">Mục 5.1.1 (Phần 2)</span>
+                    <h2 className="font-display text-4xl lg:text-5xl font-black text-slate-100">
+                      Cấu thành cốt lõi &amp; Lực lượng quyết định
+                    </h2>
+                  </div>
+                  <p className="text-sm sm:text-base text-slate-400 italic mb-3.5">
+                    [Khung lý luận vĩ mô]: 3 cột trụ cấu thành và Tính chất nhân dân sâu sắc của nền kinh tế.
+                  </p>
+
+                  {/* 3 Cột trụ cấu thành */}
+                  <div id="slide3-pillars" className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 shadow-xl text-left mb-3.5">
+                    <h4 className="text-base font-black text-vngold-400 uppercase tracking-widest mb-3">3 Bộ phận cấu thành cốt lõi</h4>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      {/* Column 1 */}
+                      <div className="border border-slate-850 rounded-xl overflow-hidden bg-slate-900/40">
+                        <button 
+                          onClick={() => setActivePillar(activePillar === 1 ? 0 : 1)}
+                          className="w-full text-left px-4 py-2.5 bg-slate-900 flex justify-between items-center text-sm font-bold text-slate-200 hover:bg-slate-850 transition-colors"
+                        >
+                          <span className="flex items-center">
+                            <i className="fa-solid fa-gears text-vnemerald-500 mr-2"></i>
+                            A. Vận hành thị trường
+                          </span>
+                          <i className={`fa-solid fa-chevron-down text-xs transition-transform duration-300 ${activePillar === 1 ? 'rotate-180 text-vngold-400' : 'text-slate-500'}`}></i>
+                        </button>
+                        <div className={`transition-all duration-300 overflow-hidden ${activePillar === 1 ? 'max-h-[350px] opacity-100 border-t border-slate-850 p-3.5' : 'max-h-0 opacity-0'}`}>
+                          <ul id="slide2-pillar-detail-1" className="text-sm sm:text-base text-slate-300 space-y-1.5 list-disc pl-5 leading-relaxed">
+                            <li>Thị trường đóng vai trò quyết định trong phân bổ các nguồn lực sản xuất.</li>
+                            <li>Giá cả hình thành theo quan hệ cung - cầu.</li>
+                            <li>Các chủ thể kinh tế bình đẳng, tự do cạnh tranh lành mạnh trước pháp luật.</li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Column 2 */}
+                      <div className="border border-slate-850 rounded-xl overflow-hidden bg-slate-900/40">
+                        <button 
+                          onClick={() => setActivePillar(activePillar === 2 ? 0 : 2)}
+                          className="w-full text-left px-4 py-2.5 bg-slate-900 flex justify-between items-center text-sm font-bold text-slate-200 hover:bg-slate-850 transition-colors"
+                        >
+                          <span className="flex items-center">
+                            <i className="fa-solid fa-bullseye text-vnred-500 mr-2"></i>
+                            B. Định hướng XHCN
+                          </span>
+                          <i className={`fa-solid fa-chevron-down text-xs transition-transform duration-300 ${activePillar === 2 ? 'rotate-180 text-vngold-400' : 'text-slate-500'}`}></i>
+                        </button>
+                        <div className={`transition-all duration-300 overflow-hidden ${activePillar === 2 ? 'max-h-[350px] opacity-100 border-t border-slate-850 p-3.5' : 'max-h-0 opacity-0'}`}>
+                          <ul id="slide2-pillar-detail-2" className="text-sm sm:text-base text-slate-300 space-y-1.5 list-disc pl-5 leading-relaxed">
+                            <li>Kinh tế gắn với xã hội: Vì mục tiêu Dân giàu, nước mạnh, dân chủ, công bằng, văn minh.</li>
+                            <li>Tăng trưởng kinh tế đi đôi với tiến bộ và công bằng xã hội trong từng bước đi.</li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Column 3 */}
+                      <div className="border border-slate-850 rounded-xl overflow-hidden bg-slate-900/40">
+                        <button 
+                          onClick={() => setActivePillar(activePillar === 3 ? 0 : 3)}
+                          className="w-full text-left px-4 py-2.5 bg-slate-900 flex justify-between items-center text-sm font-bold text-slate-200 hover:bg-slate-850 transition-colors"
+                        >
+                          <span className="flex items-center">
+                            <i className="fa-solid fa-building-columns text-vngold-400 mr-2"></i>
+                            C. Cơ chế quản lý
+                          </span>
+                          <i className={`fa-solid fa-chevron-down text-xs transition-transform duration-300 ${activePillar === 3 ? 'rotate-180 text-vngold-400' : 'text-slate-500'}`}></i>
+                        </button>
+                        <div className={`transition-all duration-300 overflow-hidden ${activePillar === 3 ? 'max-h-[350px] opacity-100 border-t border-slate-850 p-3.5' : 'max-h-0 opacity-0'}`}>
+                          <ul id="slide2-pillar-detail-3" className="text-sm sm:text-base text-slate-300 space-y-1.5 list-disc pl-5 leading-relaxed">
+                            <li>Đảng Cộng sản lãnh đạo tối cao, định hướng quyết sách vĩ mô dài hạn.</li>
+                            <li>Nhà nước pháp quyền XHCN điều tiết thị trường thông qua chính sách, luật pháp.</li>
+                            <li>Kinh tế nhà nước đóng vai trò chủ đạo, làm lực lượng then chốt.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Lực lượng quyết định */}
+                  <div id="slide3-bottom-banner" className="bg-gradient-to-r from-vnred-950/45 to-slate-900/60 border border-vnred-900/40 rounded-xl p-3 flex items-center space-x-3 shadow-inner text-left mb-3">
+                    <div className="bg-vnred-600 text-vngold-400 w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+                      <i className="fa-solid fa-users text-base"></i>
+                    </div>
+                    <div className="text-sm">
+                      <span className="text-vngold-400 font-black tracking-wide uppercase text-xs sm:text-sm mr-2">Lực lượng quyết định &amp; Tính nhân dân:</span>
+                      <span className="text-slate-250 text-xs sm:text-sm font-semibold italic">"Muốn thành công phải do nhân dân nỗ lực xây dựng mới có thể đạt được."</span>
+                      <p className="text-slate-400 text-xs mt-0.5">Nhân dân vừa là chủ thể thực hiện, vừa thụ hưởng trực tiếp mọi thành quả của nền kinh tế này.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <button 
+                  id="slide3-quiz-btn"
+                  onClick={() => setIsFlipped(true)}
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer"
+                >
+                  <i className="fa-solid fa-rotate text-base"></i>
+                  <span>Luyện tập: Câu hỏi củng cố</span>
+                </button>
+              </div>
+            )}
+
+            {/* SLIDE 4: STRATEGIC COMPASS */}
+            {currentSlide === 4 && (
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
@@ -498,7 +700,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                     <div className="space-y-5">
                       <div className="bg-slate-950/65 border border-slate-800 rounded-3xl p-6 relative overflow-hidden shadow-xl">
                         <div className="absolute top-0 left-0 w-1.5 bg-vnred-600 h-full"></div>
-                        <p className="text-slate-150 text-lg md:text-xl font-semibold leading-relaxed">
+                        <p className="text-slate-150 text-lg md:text-xl font-semibold leading-relaxed text-left">
                           "Phát triển kinh tế thị trường định hướng xã hội chủ nghĩa là <span className="text-vngold-400 font-black uppercase tracking-wide glow-accent">đường lối chiến lược nhất quán</span>, là <span className="text-vngold-400 font-black uppercase tracking-wide glow-accent">mô hình kinh tế tổng quát</span> trong suốt thời kỳ quá độ lên chủ nghĩa xã hội ở Việt Nam."
                         </p>
                       </div>
@@ -570,16 +772,14 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 
                 <button 
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
                 </button>
               </div>
-            )}
-
-            {/* SLIDE 4: GEARS & BOOSTERS */}
-            {currentSlide === 4 && (() => {
+            )}            {/* SLIDE 5: GEARS & BOOSTERS */}
+            {currentSlide === 5 && (() => {
               const boosterPct = Math.round((Object.values(boosters).filter(Boolean).length / 3) * 100);
               return (
                 <div className="flex flex-col h-full justify-between">
@@ -764,8 +964,8 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               );
             })()}
 
-            {/* SLIDE 5: TREE OF ASPIRATION */}
-            {currentSlide === 5 && (
+            {/* SLIDE 6: TREE OF ASPIRATION */}
+            {currentSlide === 6 && (
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
@@ -878,8 +1078,8 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 6: MỤC TIÊU & SỞ HỮU */}
-            {currentSlide === 6 && (
+            {/* SLIDE 7: MỤC TIÊU & SỞ HỮU */}
+            {currentSlide === 7 && (
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
@@ -928,8 +1128,8 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 7: QUẢN LÝ & PHÂN PHỐI */}
-            {currentSlide === 7 && (
+            {/* SLIDE 8: QUẢN LÝ & PHÂN PHỐI */}
+            {currentSlide === 8 && (
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
@@ -973,8 +1173,8 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 8: TĂNG TRƯỞNG & CÂN BẰNG - PHẦN 1: BẢN CHẤT & VAI TRÒ KÉP */}
-            {currentSlide === 8 && (
+            {/* SLIDE 9: TĂNG TRƯỞNG & CÂN BẰNG - PHẦN 1: BẢN CHẤT & VAI TRÒ KÉP */}
+            {currentSlide === 9 && (
               <div className="flex flex-col h-full justify-between relative">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
@@ -1087,8 +1287,8 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 9: TĂNG TRƯỞNG & CÂN BẰNG - PHƯƠNG THỨC THỰC HIỆN */}
-            {currentSlide === 9 && (
+            {/* SLIDE 10: TĂNG TRƯỞNG & CÂN BẰNG - PHƯƠNG THỨC THỰC HIỆN */}
+            {currentSlide === 10 && (
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
@@ -1187,7 +1387,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 <div>
                   <div className="flex items-center space-x-2 mb-3">
                     <span className="bg-vnemerald-500/10 text-vnemerald-400 border border-vnemerald-500/20 text-sm font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-                      Câu hỏi ôn tập củng cố bài học (Slide {currentSlide}/9)
+                      Câu hỏi ôn tập củng cố bài học (Slide {currentSlide}/10)
                     </span>
                   </div>
                   
