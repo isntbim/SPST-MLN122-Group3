@@ -393,27 +393,27 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
             {/* SLIDE 1: TRANG BÌA & KHỞI ĐỘNG */}
             {currentSlide === 1 && (
               <div className="flex flex-col h-[624px] justify-between">
-                <div className="flex items-center space-x-2.5 bg-vnred-955 border border-vnred-800 text-vnred-400 px-7 py-3.5 rounded-full text-base font-extrabold w-fit mx-auto mb-2">
+                <div className="flex items-center space-x-2.5 bg-vnred-955 border border-vnred-800 text-vnred-400 px-6 py-2 rounded-full text-sm sm:text-base font-extrabold w-fit mx-auto mb-1.5">
                   <i className="fa-solid fa-graduation-cap text-lg"></i>
                   <span>HỌC PHẦN: KINH TẾ CHÍNH TRỊ MÁC - LÊNIN</span>
                 </div>
                 
                 <div className="text-center my-auto">
-                  <h1 id="title-header" className="font-display font-black text-7xl tracking-tight leading-tight mb-8">
+                  <h1 id="title-header" className="font-display font-black text-4xl lg:text-5xl tracking-tight leading-tight mb-4">
                     Chương 5: Kinh Tế Thị Trường <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-400 to-yellow-300 glow-accent">
                       Định Hướng XHCN
                     </span> Ở Việt Nam
                   </h1>
                   
-                  <div id="warmup-container" className="max-w-4xl mx-auto bg-slate-950/80 border border-slate-800 rounded-3xl p-6 text-left shadow-2xl relative">
+                  <div id="warmup-container" className="max-w-4xl mx-auto bg-slate-950/80 border border-slate-800 rounded-3xl p-5 text-left shadow-2xl relative">
                     <div className="absolute top-0 left-0 w-2.5 h-full bg-vnred-600 rounded-l-3xl"></div>
                     <h4 className="text-base font-black text-vngold-400 uppercase tracking-widest mb-4 flex items-center">
                       <i className="fa-solid fa-fire-flame-simple mr-2 text-vnred-500 animate-pulse text-lg"></i>
                       Khởi Động Lớp Học: 3 Câu Hỏi Thảo Luận
                     </h4>
                     
-                    <div className="space-y-4">
+                    <div className="space-y-2.5">
                       {[
                         { id: 1, q: "❓ Theo bạn, 'Kinh tế thị trường' và 'Xã hội chủ nghĩa' có thể cùng song hành hòa hợp không?" },
                         { id: 2, q: "❓ Trước thời kỳ Đổi mới 1986, nền kinh tế bao cấp nước ta gặp khó khăn gì mà bạn biết?" },
@@ -429,14 +429,14 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                           <div key={item.id} className="border border-slate-850 rounded-2xl overflow-hidden transition-all bg-slate-900/50">
                             <button 
                               onClick={() => setActiveQuestion(isExpanded ? null : item.id)}
-                              className="w-full text-left p-5 text-base sm:text-lg font-black text-slate-205 hover:text-white flex justify-between items-center transition-colors"
+                              className="w-full text-left py-3 px-5 text-sm sm:text-base font-black text-slate-205 hover:text-white flex justify-between items-center transition-colors"
                             >
                               <span>{item.q}</span>
                               <i className={`fa-solid ${isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'} text-slate-500 text-base`}></i>
                             </button>
                             
                             {isExpanded && (
-                              <div className="p-5 bg-slate-950 border-t border-slate-850 flex flex-col sm:flex-row justify-between items-center gap-4 animate-fadeIn">
+                              <div className="py-3.5 px-5 bg-slate-950 border-t border-slate-850 flex flex-col sm:flex-row justify-between items-center gap-4 animate-fadeIn">
                                 <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-md">
                                   Ban thuyết trình hãy khảo sát ý kiến trực quan của lớp trước khi bắt đầu bài học.
                                 </p>
@@ -624,10 +624,10 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                       {/* Compact Bottom Banner */}
                       <div id="slide3-bottom-banner" className="bg-gradient-to-r from-vnred-955 to-slate-900/60 border border-vnred-900/30 rounded-xl p-3.5 text-left shadow-inner">
                         <div className="flex items-center space-x-2 mb-1">
-                          <i className="fa-solid fa-users text-vnred-400 text-xs"></i>
-                          <span className="text-vngold-400 font-black tracking-wide uppercase text-[11px]">Lực lượng &amp; Vai trò</span>
+                          <i className="fa-solid fa-users text-vnred-400 text-sm"></i>
+                          <span className="text-vngold-400 font-black tracking-wide uppercase text-sm sm:text-base">Lực lượng &amp; Vai trò</span>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-slate-350 leading-relaxed font-semibold italic">
+                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-semibold italic">
                           "Muốn thành công phải do nhân dân nỗ lực xây dựng." Nhân dân vừa là chủ thể xây dựng vừa là người thụ hưởng trực tiếp thành quả.
                         </p>
                       </div>
