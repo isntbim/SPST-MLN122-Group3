@@ -69,13 +69,12 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       gsap.from('#slide2-title', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
       gsap.from('#slide2-definition', { opacity: 0, y: 35, duration: 0.9, ease: 'power3.out', delay: 0.1 });
       gsap.from('#slide2-dual-nature', { opacity: 0, x: -40, duration: 0.9, ease: 'power3.out', delay: 0.25 });
-      gsap.from('#slide2-quiz-btn', { opacity: 0, scale: 0.9, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+      gsap.from('#slide2-quiz-btn', { scale: 0.9, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
     }
     if (currentSlide === 3) {
       gsap.from('#slide3-title', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
-      gsap.from('#slide3-pillars', { opacity: 0, y: 35, duration: 0.9, ease: 'power3.out', delay: 0.1 });
       gsap.from('#slide3-bottom-banner', { opacity: 0, y: 25, duration: 0.7, ease: 'power2.out', delay: 0.25 });
-      gsap.from('#slide3-quiz-btn', { opacity: 0, scale: 0.9, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+      gsap.from('#slide3-quiz-btn', { scale: 0.9, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
     }
     if (currentSlide === 9) {
       // Set initial scale positions on load to prevent any shift or disconnect
@@ -393,7 +392,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
             
             {/* SLIDE 1: TRANG BÌA & KHỞI ĐỘNG */}
             {currentSlide === 1 && (
-              <div className="flex flex-col h-full justify-between">
+              <div className="flex flex-col h-[624px] justify-between">
                 <div className="flex items-center space-x-2.5 bg-vnred-955 border border-vnred-800 text-vnred-400 px-7 py-3.5 rounded-full text-base font-extrabold w-fit mx-auto mb-2">
                   <i className="fa-solid fa-graduation-cap text-lg"></i>
                   <span>HỌC PHẦN: KINH TẾ CHÍNH TRỊ MÁC - LÊNIN</span>
@@ -482,7 +481,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 2: KHÁI NIỆM - PHẦN 1 */}
             {currentSlide === 2 && (
-              <div className="flex flex-col h-full justify-between">
+              <div className="flex flex-col h-[624px] justify-between">
                 <div>
                   <div id="slide2-title" className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-sm font-extrabold px-2.5 py-1 rounded">Mục 5.1.1 (Phần 1)</span>
@@ -580,96 +579,128 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 3: KHÁI NIỆM - PHẦN 2 */}
             {currentSlide === 3 && (
-              <div className="flex flex-col h-full justify-between -mt-5 -mb-5">
+              <div className="flex flex-col h-[624px] justify-between">
                 <div>
-                  <div id="slide3-title" className="flex items-center space-x-3 mb-1">
+                  <div id="slide3-title" className="flex items-center space-x-3 mb-2">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-sm font-extrabold px-2.5 py-1 rounded">Mục 5.1.1 (Phần 2)</span>
                     <h2 className="font-display text-4xl lg:text-5xl font-black text-slate-100">
                       Cấu thành cốt lõi &amp; Lực lượng quyết định
                     </h2>
                   </div>
-                  <p className="text-sm sm:text-base text-slate-400 italic mb-3.5">
+                  <p className="text-sm sm:text-base text-slate-400 italic mb-4">
                     [Khung lý luận vĩ mô]: 3 cột trụ cấu thành và Tính chất nhân dân sâu sắc của nền kinh tế.
                   </p>
 
-                  {/* 3 Cột trụ cấu thành */}
-                  <div id="slide3-pillars" className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 shadow-xl text-left mb-3.5">
-                    <h4 className="text-base font-black text-vngold-400 uppercase tracking-widest mb-3">3 Bộ phận cấu thành cốt lõi</h4>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                      {/* Column 1 */}
-                      <div className="border border-slate-850 rounded-xl overflow-hidden bg-slate-900/40">
-                        <button 
-                          onClick={() => setActivePillar(activePillar === 1 ? 0 : 1)}
-                          className="w-full text-left px-4 py-2.5 bg-slate-900 flex justify-between items-center text-sm font-bold text-slate-200 hover:bg-slate-850 transition-colors"
-                        >
-                          <span className="flex items-center">
-                            <i className="fa-solid fa-gears text-vnemerald-500 mr-2"></i>
-                            A. Vận hành thị trường
-                          </span>
-                          <i className={`fa-solid fa-chevron-down text-xs transition-transform duration-300 ${activePillar === 1 ? 'rotate-180 text-vngold-400' : 'text-slate-500'}`}></i>
-                        </button>
-                        <div className={`transition-all duration-300 overflow-hidden ${activePillar === 1 ? 'max-h-[350px] opacity-100 border-t border-slate-850 p-3.5' : 'max-h-0 opacity-0'}`}>
-                          <ul id="slide2-pillar-detail-1" className="text-sm sm:text-base text-slate-300 space-y-1.5 list-disc pl-5 leading-relaxed">
-                            <li>Thị trường đóng vai trò quyết định trong phân bổ các nguồn lực sản xuất.</li>
-                            <li>Giá cả hình thành theo quan hệ cung - cầu.</li>
-                            <li>Các chủ thể kinh tế bình đẳng, tự do cạnh tranh lành mạnh trước pháp luật.</li>
-                          </ul>
-                        </div>
+                  <div className="grid grid-cols-12 gap-6 my-auto items-stretch min-h-[380px]">
+                    {/* Left side selector */}
+                    <div className="col-span-5 flex flex-col justify-between space-y-4">
+                      <div className="space-y-3">
+                        <h4 className="text-xs font-black text-vngold-400 uppercase tracking-widest mb-1">3 Bộ phận cấu thành</h4>
+                        {[
+                          { id: 1, label: 'A. Vận hành thị trường', icon: 'fa-gears', color: 'text-vnemerald-400' },
+                          { id: 2, label: 'B. Định hướng XHCN', icon: 'fa-bullseye', color: 'text-vnred-400' },
+                          { id: 3, label: 'C. Cơ chế quản lý', icon: 'fa-building-columns', color: 'text-vngold-400' }
+                        ].map(item => (
+                          <button
+                            key={item.id}
+                            onClick={() => setActivePillar(item.id)}
+                            className={`w-full text-left p-4 rounded-xl border font-bold text-sm sm:text-base transition-all flex items-center justify-between cursor-pointer ${
+                              activePillar === item.id
+                                ? 'bg-slate-900 border-vnred-500 text-white shadow-[0_0_12px_rgba(202,8,53,0.2)]'
+                                : 'bg-slate-950/40 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                            }`}
+                          >
+                            <span className="flex items-center">
+                              <i className={`fa-solid ${item.icon} ${item.color} mr-2.5 text-base`}></i>
+                              {item.label}
+                            </span>
+                            {activePillar === item.id && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-vnred-500 animate-ping"></span>
+                            )}
+                          </button>
+                        ))}
                       </div>
 
-                      {/* Column 2 */}
-                      <div className="border border-slate-850 rounded-xl overflow-hidden bg-slate-900/40">
-                        <button 
-                          onClick={() => setActivePillar(activePillar === 2 ? 0 : 2)}
-                          className="w-full text-left px-4 py-2.5 bg-slate-900 flex justify-between items-center text-sm font-bold text-slate-200 hover:bg-slate-850 transition-colors"
-                        >
-                          <span className="flex items-center">
-                            <i className="fa-solid fa-bullseye text-vnred-500 mr-2"></i>
-                            B. Định hướng XHCN
-                          </span>
-                          <i className={`fa-solid fa-chevron-down text-xs transition-transform duration-300 ${activePillar === 2 ? 'rotate-180 text-vngold-400' : 'text-slate-500'}`}></i>
-                        </button>
-                        <div className={`transition-all duration-300 overflow-hidden ${activePillar === 2 ? 'max-h-[350px] opacity-100 border-t border-slate-850 p-3.5' : 'max-h-0 opacity-0'}`}>
-                          <ul id="slide2-pillar-detail-2" className="text-sm sm:text-base text-slate-300 space-y-1.5 list-disc pl-5 leading-relaxed">
-                            <li>Kinh tế gắn với xã hội: Vì mục tiêu Dân giàu, nước mạnh, dân chủ, công bằng, văn minh.</li>
-                            <li>Tăng trưởng kinh tế đi đôi với tiến bộ và công bằng xã hội trong từng bước đi.</li>
-                          </ul>
+                      {/* Compact Bottom Banner */}
+                      <div id="slide3-bottom-banner" className="bg-gradient-to-r from-vnred-955 to-slate-900/60 border border-vnred-900/30 rounded-xl p-3.5 text-left shadow-inner">
+                        <div className="flex items-center space-x-2 mb-1">
+                          <i className="fa-solid fa-users text-vnred-400 text-xs"></i>
+                          <span className="text-vngold-400 font-black tracking-wide uppercase text-[11px]">Lực lượng &amp; Vai trò</span>
                         </div>
-                      </div>
-
-                      {/* Column 3 */}
-                      <div className="border border-slate-850 rounded-xl overflow-hidden bg-slate-900/40">
-                        <button 
-                          onClick={() => setActivePillar(activePillar === 3 ? 0 : 3)}
-                          className="w-full text-left px-4 py-2.5 bg-slate-900 flex justify-between items-center text-sm font-bold text-slate-200 hover:bg-slate-850 transition-colors"
-                        >
-                          <span className="flex items-center">
-                            <i className="fa-solid fa-building-columns text-vngold-400 mr-2"></i>
-                            C. Cơ chế quản lý
-                          </span>
-                          <i className={`fa-solid fa-chevron-down text-xs transition-transform duration-300 ${activePillar === 3 ? 'rotate-180 text-vngold-400' : 'text-slate-500'}`}></i>
-                        </button>
-                        <div className={`transition-all duration-300 overflow-hidden ${activePillar === 3 ? 'max-h-[350px] opacity-100 border-t border-slate-850 p-3.5' : 'max-h-0 opacity-0'}`}>
-                          <ul id="slide2-pillar-detail-3" className="text-sm sm:text-base text-slate-300 space-y-1.5 list-disc pl-5 leading-relaxed">
-                            <li>Đảng Cộng sản lãnh đạo tối cao, định hướng quyết sách vĩ mô dài hạn.</li>
-                            <li>Nhà nước pháp quyền XHCN điều tiết thị trường thông qua chính sách, luật pháp.</li>
-                            <li>Kinh tế nhà nước đóng vai trò chủ đạo, làm lực lượng then chốt.</li>
-                          </ul>
-                        </div>
+                        <p className="text-[11px] sm:text-xs text-slate-350 leading-relaxed font-semibold italic">
+                          "Muốn thành công phải do nhân dân nỗ lực xây dựng." Nhân dân vừa là chủ thể xây dựng vừa là người thụ hưởng trực tiếp thành quả.
+                        </p>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Lực lượng quyết định */}
-                  <div id="slide3-bottom-banner" className="bg-gradient-to-r from-vnred-950/45 to-slate-900/60 border border-vnred-900/40 rounded-xl p-3 flex items-center space-x-3 shadow-inner text-left mb-3">
-                    <div className="bg-vnred-600 text-vngold-400 w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
-                      <i className="fa-solid fa-users text-base"></i>
-                    </div>
-                    <div className="text-sm">
-                      <span className="text-vngold-400 font-black tracking-wide uppercase text-xs sm:text-sm mr-2">Lực lượng quyết định &amp; Tính nhân dân:</span>
-                      <span className="text-slate-250 text-xs sm:text-sm font-semibold italic">"Muốn thành công phải do nhân dân nỗ lực xây dựng mới có thể đạt được."</span>
-                      <p className="text-slate-400 text-xs mt-0.5">Nhân dân vừa là chủ thể thực hiện, vừa thụ hưởng trực tiếp mọi thành quả của nền kinh tế này.</p>
+                    {/* Right side details display (FIXED HEIGHT) */}
+                    <div className="col-span-7 bg-slate-950/80 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl">
+                      <div>
+                        <div className="flex items-center justify-between border-b border-slate-850 pb-3 mb-4">
+                          <h4 className="text-sm font-black text-slate-200 uppercase tracking-widest">Chi tiết nội dung</h4>
+                          <span className="text-[10px] text-vnred-400 font-bold uppercase tracking-wider bg-vnred-955 px-2 py-0.5 rounded border border-vnred-900/30">
+                            Bộ phận {activePillar === 1 ? 'A' : activePillar === 2 ? 'B' : 'C'}
+                          </span>
+                        </div>
+
+                        <div className="min-h-[220px]">
+                          {activePillar === 1 && (
+                            <ul id="slide2-pillar-detail-1" className="space-y-4 text-sm sm:text-base text-slate-300 list-none pl-1">
+                              <li className="flex items-start">
+                                <span className="w-1.5 h-1.5 bg-vnemerald-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Thị trường đóng vai trò quyết định trong việc phân bổ các nguồn lực xã hội và thúc đẩy sản xuất.</span>
+                              </li>
+                              <li className="flex items-start">
+                                <span className="w-1.5 h-1.5 bg-vnemerald-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Giá cả và quan hệ trao đổi được hình thành khách quan theo quan hệ cung - cầu và cạnh tranh.</span>
+                              </li>
+                              <li className="flex items-start">
+                                <span className="w-1.5 h-1.5 bg-vnemerald-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Các chủ thể kinh tế tự chủ, bình đẳng pháp lý và tự do hợp tác kinh doanh lành mạnh.</span>
+                              </li>
+                            </ul>
+                          )}
+
+                          {activePillar === 2 && (
+                            <ul id="slide2-pillar-detail-2" className="space-y-4 text-sm sm:text-base text-slate-300 list-none pl-1">
+                              <li className="flex items-start">
+                                <span className="w-1.5 h-1.5 bg-vnred-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Kinh tế gắn liền với an sinh: Phát triển vì mục tiêu <strong>"Dân giàu, nước mạnh, dân chủ, công bằng, văn minh"</strong>.</span>
+                              </li>
+                              <li className="flex items-start">
+                                <span className="w-1.5 h-1.5 bg-vnred-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Phải gắn kết tăng trưởng kinh tế với tiến bộ và công bằng xã hội trong từng bước đi và từng chính sách.</span>
+                              </li>
+                              <li className="flex items-start">
+                                <span className="w-1.5 h-1.5 bg-vnred-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Khuyến khích làm giàu hợp pháp đi đôi với xóa đói giảm nghèo bền vững, chăm lo các nhóm yếu thế.</span>
+                              </li>
+                            </ul>
+                          )}
+
+                          {activePillar === 3 && (
+                            <ul id="slide2-pillar-detail-3" className="space-y-4 text-sm sm:text-base text-slate-300 list-none pl-1">
+                              <li className="flex items-start">
+                                <span className="w-1.5 h-1.5 bg-vngold-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span><strong>Đảng Cộng sản lãnh đạo tối cao</strong>, vạch định đường lối phát triển và định hướng quyết sách vĩ mô.</span>
+                              </li>
+                              <li className="flex items-start">
+                                <span className="w-1.5 h-1.5 bg-vngold-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span><strong>Nhà nước pháp quyền XHCN quản lý</strong>, kiến tạo môi trường kinh doanh và điều tiết sửa chữa khuyết tật thị trường.</span>
+                              </li>
+                              <li className="flex items-start">
+                                <span className="w-1.5 h-1.5 bg-vngold-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span><strong>Kinh tế Nhà nước giữ vai trò chủ đạo</strong>, cùng kinh tế tập thể làm nền tảng vững chắc cho nền kinh tế quốc dân.</span>
+                              </li>
+                            </ul>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="border-t border-slate-850 pt-3 text-[11px] text-slate-500 flex items-center space-x-1">
+                        <i className="fa-solid fa-lightbulb text-vngold-400"></i>
+                        <span>Bấm các bộ phận bên trái để chuyển đổi hiển thị thông tin chi tiết.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -677,7 +708,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 <button 
                   id="slide3-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -687,7 +718,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 4: STRATEGIC COMPASS */}
             {currentSlide === 4 && (
-              <div className="flex flex-col h-full justify-between">
+              <div className="flex flex-col h-[624px] justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.2</span>
@@ -771,8 +802,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 </div>
                 
                 <button 
+                  id="slide4-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -782,7 +814,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
             {currentSlide === 5 && (() => {
               const boosterPct = Math.round((Object.values(boosters).filter(Boolean).length / 3) * 100);
               return (
-                <div className="flex flex-col h-full justify-between">
+                <div className="flex flex-col h-[624px] justify-between">
                   <div>
                     <div className="flex items-center space-x-3 mb-1">
                       <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.2</span>
@@ -954,8 +986,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                   </div>
                   
                   <button 
+                    id="slide5-quiz-btn"
                     onClick={() => setIsFlipped(true)}
-                    className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider"
+                    className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                   >
                     <i className="fa-solid fa-rotate text-base"></i>
                     <span>Luyện tập: Câu hỏi củng cố</span>
@@ -966,7 +999,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 6: TREE OF ASPIRATION */}
             {currentSlide === 6 && (
-              <div className="flex flex-col h-full justify-between">
+              <div className="flex flex-col h-[624px] justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.2</span>
@@ -1069,8 +1102,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 </div>
                 
                 <button 
+                  id="slide6-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1080,7 +1114,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 7: MỤC TIÊU & SỞ HỮU */}
             {currentSlide === 7 && (
-              <div className="flex flex-col h-full justify-between">
+              <div className="flex flex-col h-[624px] justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần A)</span>
@@ -1119,8 +1153,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 </div>
                 
                 <button 
+                  id="slide7-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1130,7 +1165,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 8: QUẢN LÝ & PHÂN PHỐI */}
             {currentSlide === 8 && (
-              <div className="flex flex-col h-full justify-between">
+              <div className="flex flex-col h-[624px] justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần B)</span>
@@ -1164,8 +1199,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 </div>
                 
                 <button 
+                  id="slide8-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1175,7 +1211,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 9: TĂNG TRƯỞNG & CÂN BẰNG - PHẦN 1: BẢN CHẤT & VAI TRÒ KÉP */}
             {currentSlide === 9 && (
-              <div className="flex flex-col h-full justify-between relative">
+              <div className="flex flex-col h-[624px] justify-between relative">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần C1)</span>
@@ -1278,8 +1314,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 </div>
                 
                 <button 
+                  id="slide9-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1289,7 +1326,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 10: TĂNG TRƯỞNG & CÂN BẰNG - PHƯƠNG THỨC THỰC HIỆN */}
             {currentSlide === 10 && (
-              <div className="flex flex-col h-full justify-between">
+              <div className="flex flex-col h-[624px] justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần C2)</span>
@@ -1367,8 +1404,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 </div>
                 
                 <button 
+                  id="slide10-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
