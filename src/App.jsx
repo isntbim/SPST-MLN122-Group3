@@ -11,8 +11,8 @@ export default function App() {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [activeModal, setActiveModal] = useState(null); // 'mindmap' | 'flashcards' | 'chatbot' | 'integrity' | null
   
-  const totalSlides = 10;
-
+  const totalSlides = 11;
+ 
   // Presenter tips & estimations (mapped to current slide)
   const coachTips = {
     1: 'Giới thiệu đại diện nhóm và dẫn dắt bằng 3 câu hỏi khởi động để tạo không khí thảo luận sôi nổi cho lớp học.',
@@ -21,12 +21,13 @@ export default function App() {
     4: 'Mục 5.1.2: Hãy nhấn chuột vào vòng tròn La bàn để kim la bàn xoay 360 độ, phát sóng radar mở rộng 3 lý do cốt lõi của tính tất yếu.',
     5: 'Mục 5.1.2: Sử dụng thanh trượt để khớp nối bánh răng Lực lượng sản xuất thực tế & Quan hệ sản xuất, đồng thời click bật 3 chỉ báo sức mạnh thị trường để kích hoạt động cơ tăng trưởng.',
     6: 'Mục 5.1.2: Tương tác trực tiếp trên Cây khát vọng. Click từng quả Dân giàu, Nước mạnh... để thuyết minh mong ước thật sự của nhân dân.',
-    7: 'Tóm lược đặc trưng 1 & 2: Mục tiêu là phát triển LLSX nâng cao đời sống dân cư; Cơ cấu sở hữu bình đẳng nhưng Kinh tế nhà nước giữ vai trò then chốt.',
-    8: 'Tóm lược đặc trưng 3 & 4: Vai trò điều tiết vĩ mô của Nhà nước do Đảng lãnh đạo để sửa chữa khuyết tật tự phát; Phân phối đa dạng nâng đỡ nhóm yếu thế.',
-    9: 'Tóm lược đặc trưng 5 (Phần 1): Mối quan hệ gắn kết giữa tăng trưởng kinh tế với công bằng xã hội; giải thích vai trò kép của tiến bộ xã hội.',
-    10: 'Tóm lược đặc trưng 5 (Phần 2): Đi sâu vào phương thức thực hiện - lồng ghép công bằng xã hội vào từng quy hoạch, chính sách vĩ mô ngay từ đầu.'
+    7: 'Mục 5.1.3 (Phần A1): Trình bày đặc trưng về Mục tiêu phát triển. Nhìn hình ảnh minh họa bên phải để liên hệ so sánh tốc độ xe và hướng đi.',
+    8: 'Mục 5.1.3 (Phần A2): Trình bày đặc trưng về Cơ cấu sở hữu & Thành phần kinh tế. Phân tích vai trò chủ đạo của Kinh tế Nhà nước.',
+    9: 'Tóm lược đặc trưng 3 & 4 (Phần B): Vai trò quản lý của Nhà nước do Đảng lãnh đạo và các hình thức phân phối bảo đảm công bằng xã hội.',
+    10: 'Tóm lược đặc trưng 5 (Phần C1): Giải thích bản chất & vai trò kép của tiến bộ xã hội. Sử dụng cán cân mô phỏng để cân bằng kinh tế.',
+    11: 'Tóm lược đặc trưng 5 (Phần C2): Đi sâu vào phương thức thực hiện - lồng ghép tiến bộ xã hội ngay trong từng quy hoạch, chính sách phát triển.'
   };
-
+ 
   const timeEstimations = {
     1: '45 Giây',
     2: '45 Giây',
@@ -34,10 +35,11 @@ export default function App() {
     4: '60 Giây',
     5: '60 Giây',
     6: '60 Giây',
-    7: '30 Giây',
-    8: '30 Giây',
+    7: '45 Giây',
+    8: '45 Giây',
     9: '45 Giây',
-    10: '45 Giây'
+    10: '60 Giây',
+    11: '45 Giây'
   };
 
   const handleNextSlide = () => {
@@ -152,10 +154,11 @@ export default function App() {
                     '4. 5.1.2 Tất yếu (La bàn)',
                     '5. 5.1.2 Tất yếu (Động lực kép)',
                     '6. 5.1.2 Tất yếu (Cây Khát vọng)',
-                    '7. Đặc trưng: Mục tiêu & Sở hữu',
-                    '8. Đặc trưng: Quản lý & Phân phối',
-                    '9. Đặc trưng: Tăng trưởng & Cân bằng (P1)',
-                    '10. Đặc trưng: Tăng trưởng & Cân bằng (P2)'
+                    '7. Đặc trưng: Mục tiêu phát triển',
+                    '8. Đặc trưng: Cơ cấu sở hữu',
+                    '9. Đặc trưng: Quản lý & Phân phối',
+                    '10. Đặc trưng: Tăng trưởng & Cân bằng (P1)',
+                    '11. Đặc trưng: Tăng trưởng & Cân bằng (P2)'
                   ].map((title, idx) => (
                     <button
                       key={idx}
@@ -212,7 +215,7 @@ export default function App() {
                   <span>Trước đó</span>
                 </button>
                 <div className="text-xs text-slate-400 font-bold block lg:hidden">
-                  Slide {currentSlide}/8
+                  Slide {currentSlide}/{totalSlides}
                 </div>
                 <button 
                   onClick={handleNextSlide}

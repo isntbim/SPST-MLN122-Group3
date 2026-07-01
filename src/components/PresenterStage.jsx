@@ -76,7 +76,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       gsap.from('#slide3-bottom-banner', { opacity: 0, y: 25, duration: 0.7, ease: 'power2.out', delay: 0.25 });
       gsap.from('#slide3-quiz-btn', { scale: 0.9, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
     }
-    if (currentSlide === 9) {
+    if (currentSlide === 10) {
       // Set initial scale positions on load to prevent any shift or disconnect
       gsap.set('#scale-beam', { rotation: -12, svgOrigin: '150 40' });
       gsap.set('#left-pan', { rotation: 12, svgOrigin: '60 40' });
@@ -326,16 +326,29 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
     },
     7: {
       correct: 'c',
-      question: 'Thành phần kinh tế nào nắm giữ vai trò "chủ đạo" dẫn dắt vĩ mô trong cơ cấu nhiều thành phần?',
+      question: 'Theo nền kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam, mục tiêu cuối cùng của phát triển kinh tế là gì?',
       options: [
-        { key: 'a', text: 'A. Kinh tế tư nhân nội địa' },
-        { key: 'b', text: 'B. Kinh tế có vốn đầu tư nước ngoài (FDI)' },
-        { key: 'c', text: 'C. Kinh tế Nhà nước' }
+        { key: 'a', text: 'A. Tối đa hóa lợi nhuận doanh nghiệp.' },
+        { key: 'b', text: 'B. Tăng GDP nhanh nhất có thể.' },
+        { key: 'c', text: 'C. Phát triển vì con người, hướng tới dân giàu, nước mạnh, dân chủ, công bằng, văn minh.' },
+        { key: 'd', text: 'D. Chỉ ưu tiên phát triển khu vực tư nhân.' }
       ],
-      feedbackCorrect: 'Đúng! [Mục 5.1.3]: Kinh tế nhà nước giữ vai trò chủ đạo là lực lượng then chốt để ổn định vĩ mô và định hướng XHCN.',
-      feedbackIncorrect: 'Chưa chính xác! Thử suy luận lại nội dung học phần để có quyết định đúng đắn.'
+      feedbackCorrect: 'Đúng! Mục tiêu phát triển tối thượng của Việt Nam là hướng tới phát triển con người, bảo đảm dân giàu, nước mạnh, dân chủ, công bằng, văn minh.',
+      feedbackIncorrect: 'Chưa chính xác! Thử suy luận dựa trên định hướng xã hội chủ nghĩa của Việt Nam.'
     },
     8: {
+      correct: 'c',
+      question: 'Phát biểu nào sau đây phản ánh đúng đặc trưng về sở hữu trong nền kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam?',
+      options: [
+        { key: 'a', text: 'A. Chỉ tồn tại kinh tế Nhà nước.' },
+        { key: 'b', text: 'B. Chỉ phát triển kinh tế tư nhân.' },
+        { key: 'c', text: 'C. Nhiều thành phần kinh tế cùng phát triển, trong đó kinh tế Nhà nước giữ vai trò chủ đạo.' },
+        { key: 'd', text: 'D. Chỉ doanh nghiệp nước ngoài được đầu tư.' }
+      ],
+      feedbackCorrect: 'Đúng! Việt Nam có cơ cấu nhiều thành phần kinh tế cùng hợp tác cạnh tranh lành mạnh, trong đó kinh tế Nhà nước giữ vai trò chủ đạo.',
+      feedbackIncorrect: 'Chưa chính xác! Nhớ lại vai trò dẫn dắt của Kinh tế Nhà nước.'
+    },
+    9: {
       correct: 'b',
       question: 'Đâu là hình thức phân phối phản ánh đậm nét nhất định hướng XHCN bảo đảm công bằng xã hội?',
       options: [
@@ -346,7 +359,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       feedbackCorrect: 'Đúng! [Mục 5.1.3]: Phối hợp chặt chẽ giữa phân phối theo lao động và hệ thống an sinh xã hội chính là chìa khóa định hướng.',
       feedbackIncorrect: 'Chưa chính xác! Thử suy luận lại nội dung học phần để có quyết định đúng đắn.'
     },
-    9: {
+    10: {
       correct: 'b',
       question: 'Theo đoạn trích, tiến bộ và công bằng xã hội đóng vai trò như thế nào đối với nền kinh tế thị trường định hướng XHCN?',
       options: [
@@ -357,7 +370,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       feedbackCorrect: 'Đúng! [Mục 5.1.3]: Tiến bộ và công bằng xã hội đóng vai trò kép: vừa là điều kiện bảo đảm sự phát triển bền vững, vừa là mục tiêu thể hiện bản chất chế độ.',
       feedbackIncorrect: 'Chưa chính xác! Hãy suy luận lại vai trò kép của công bằng xã hội đối với sự phát triển bền vững.'
     },
-    10: {
+    11: {
       correct: 'b',
       question: 'Việc thực hiện tiến bộ và công bằng xã hội ở nước ta cần phải được lồng ghép như thế nào?',
       options: [
@@ -1112,42 +1125,43 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 7: MỤC TIÊU & SỞ HỮU */}
+            {/* SLIDE 7: MỤC TIÊU PHÁT TRIỂN */}
             {currentSlide === 7 && (
               <div className="flex flex-col h-[624px] justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
-                    <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần A)</span>
+                    <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần A1)</span>
                     <h2 className="font-display text-5xl font-black text-slate-100">
-                      Đặc trưng về Mục tiêu &amp; Cơ cấu Quan hệ Sở hữu
+                      Đặc trưng về Mục tiêu phát triển
                     </h2>
                   </div>
-                  <p className="text-lg text-slate-400 italic mb-6">
-                    [Khung lý luận vĩ mô]: Vai trò chủ đạo của Kinh tế Nhà nước và động lực phát triển từ Kinh tế Tư nhân.
+                  <p className="text-lg text-slate-400 italic mb-4">
+                    [Khung lý luận vĩ mô]: Điểm khác biệt lớn nhất nằm ở mục tiêu phát triển vì con người của Việt Nam.
                   </p>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto py-2">
-                    <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-8 shadow-xl flex flex-col justify-between">
+                  <div className="grid grid-cols-12 gap-8 my-auto py-2 items-center">
+                    <div className="col-span-7 bg-slate-950/60 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
                       <div>
-                        <h4 className="text-lg font-black text-vngold-400 uppercase tracking-widest mb-3">Về Mục tiêu Phát triển</h4>
-                        <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-4">
-                          Giải phóng lực lượng sản xuất, xây dựng cơ sở vật chất kỹ thuật vững chắc của chủ nghĩa xã hội. Nâng cao đời sống vật chất và tinh thần của toàn thể nhân dân.
+                        <h4 className="text-base font-black text-vngold-400 uppercase tracking-widest mb-2 flex items-center">
+                          <i className="fa-solid fa-bullseye mr-2 text-vnred-500"></i>Mục tiêu tối thượng
+                        </h4>
+                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-semibold">
+                          Thực hiện lý tưởng: <strong>"Dân giàu - nước mạnh - dân chủ - công bằng - văn minh"</strong>. Tăng trưởng kinh tế phải đi đôi với nâng cao chất lượng cuộc sống và an sinh xã hội.
                         </p>
                       </div>
-                      <span className="text-sm sm:text-base text-vnred-400 block border-t border-slate-800/80 pt-3 font-semibold">
-                        Sự khác biệt cốt lõi so với kinh tế thị trường tư bản (TBCN) vốn ưu tiên tích lũy tư bản tối đa cho giới chủ.
-                      </span>
+                      
+                      <div className="border-t border-slate-850 pt-3">
+                        <h4 className="text-base font-black text-vnemerald-500 uppercase tracking-widest mb-2 flex items-center">
+                          <i className="fa-solid fa-car-side mr-2 text-vnemerald-500"></i>Phép so sánh Sinh động
+                        </h4>
+                        <p className="text-sm sm:text-base text-slate-355 leading-relaxed">
+                          Nếu nền kinh tế giống như một chiếc xe đang chạy, thì <strong>tăng trưởng kinh tế chính là tốc độ xe</strong>, còn <strong>mục tiêu xã hội chủ nghĩa chính là hướng đi</strong>. Xe chạy rất nhanh nhưng đi sai hướng thì cũng không đạt được đích đến cuối cùng.
+                        </p>
+                      </div>
                     </div>
-                    <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-8 shadow-xl">
-                      <h4 className="text-lg font-black text-vnemerald-500 uppercase tracking-widest mb-3">Về Cơ cấu Sở hữu &amp; Thành phần</h4>
-                      <p className="text-base sm:text-lg text-slate-205 leading-relaxed mb-3 font-bold">
-                        Cơ cấu kinh tế nhiều thành phần:
-                      </p>
-                      <ul className="text-sm sm:text-lg text-slate-300 space-y-4 list-disc pl-5">
-                        <li><strong>Kinh tế Nhà nước:</strong> Giữ vai trò chủ đạo, là công cụ dẫn dắt vĩ mô.</li>
-                        <li><strong>Kinh tế Tư nhân:</strong> Được coi trọng là một động lực quan trọng của nền kinh tế.</li>
-                        <li><strong>Kinh tế Tập thể, FDI:</strong> Mắt xích quan trọng cùng hợp tác và cạnh tranh bình đẳng.</li>
-                      </ul>
+
+                    <div className="col-span-5 bg-slate-950/40 border border-slate-850 rounded-3xl p-3 flex items-center justify-center overflow-hidden shadow-xl h-[330px]">
+                      <img src="/image1.png" alt="Mục tiêu phát triển" className="w-full h-full rounded-2xl object-cover" />
                     </div>
                   </div>
                 </div>
@@ -1155,7 +1169,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 <button 
                   id="slide7-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
+                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1163,8 +1177,64 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 8: QUẢN LÝ & PHÂN PHỐI */}
+            {/* SLIDE 8: CƠ CẤU SỞ HỮU & THÀNH PHẦN KINH TẾ */}
             {currentSlide === 8 && (
+              <div className="flex flex-col h-[624px] justify-between">
+                <div>
+                  <div className="flex items-center space-x-3 mb-1">
+                    <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần A2)</span>
+                    <h2 className="font-display text-5xl font-black text-slate-100">
+                      Chế độ sở hữu &amp; Thành phần kinh tế
+                    </h2>
+                  </div>
+                  <p className="text-lg text-slate-400 italic mb-4">
+                    [Khung lý luận vĩ mô]: Cơ cấu nhiều thành phần kinh tế cùng phát triển dưới sự dẫn dắt của Kinh tế Nhà nước.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto py-2">
+                    <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between min-h-[330px]">
+                      <div>
+                        <h4 className="text-lg font-black text-vngold-400 uppercase tracking-widest mb-3 flex items-center">
+                          <i className="fa-solid fa-building-columns mr-2 text-vngold-400"></i>Kinh tế Nhà nước chủ đạo
+                        </h4>
+                        <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                          Nhà nước nắm giữ những lĩnh vực then chốt, có ý nghĩa chiến lược quốc gia (điện, dầu khí, hạ tầng, quốc phòng, dịch vụ công) để dẫn dắt, định hướng và điều tiết nền kinh tế vĩ mô ổn định.
+                        </p>
+                      </div>
+                      <span className="text-xs sm:text-sm text-vnred-400 block border-t border-slate-800/80 pt-3 font-semibold">
+                        Thị trường quyết định phân bổ nguồn lực; Nhà nước quản lý bằng pháp luật và can thiệp điều tiết khi cần thiết.
+                      </span>
+                    </div>
+
+                    <div className="bg-slate-950/60 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between min-h-[330px]">
+                      <div>
+                        <h4 className="text-lg font-black text-vnemerald-500 uppercase tracking-widest mb-3 flex items-center">
+                          <i className="fa-solid fa-briefcase mr-2 text-vnemerald-500"></i>Cơ cấu nhiều thành phần
+                        </h4>
+                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed mb-4">
+                          Các thành phần kinh tế (Kinh tế Nhà nước, Kinh tế tập thể, Kinh tế tư nhân, FDI) cùng hợp tác và cạnh tranh bình đẳng trước pháp luật để giải phóng tiềm năng đất nước.
+                        </p>
+                      </div>
+                      <span className="text-xs sm:text-sm text-slate-400 block border-t border-slate-800/80 pt-3 font-semibold">
+                        Khu vực tư nhân (VinFast, FPT...) phát triển mạnh mẽ, đóng vai trò là một động lực quan trọng của nền kinh tế.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <button 
+                  id="slide8-quiz-btn"
+                  onClick={() => setIsFlipped(true)}
+                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
+                >
+                  <i className="fa-solid fa-rotate text-base"></i>
+                  <span>Luyện tập: Câu hỏi củng cố</span>
+                </button>
+              </div>
+            )}
+
+            {/* SLIDE 9: QUẢN LÝ & PHÂN PHỐI */}
+            {currentSlide === 9 && (
               <div className="flex flex-col h-[624px] justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
@@ -1199,9 +1269,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 </div>
                 
                 <button 
-                  id="slide8-quiz-btn"
+                  id="slide9-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
+                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1209,8 +1279,8 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 9: TĂNG TRƯỞNG & CÂN BẰNG - PHẦN 1: BẢN CHẤT & VAI TRÒ KÉP */}
-            {currentSlide === 9 && (
+            {/* SLIDE 10: TĂNG TRƯỞNG & CÂN BẰNG - PHẦN 1: BẢN CHẤT & VAI TRÒ KÉP */}
+            {currentSlide === 10 && (
               <div className="flex flex-col h-[624px] justify-between relative">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
@@ -1314,9 +1384,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 </div>
                 
                 <button 
-                  id="slide9-quiz-btn"
+                  id="slide10-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
+                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1324,8 +1394,8 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
               </div>
             )}
 
-            {/* SLIDE 10: TĂNG TRƯỞNG & CÂN BẰNG - PHƯƠNG THỨC THỰC HIỆN */}
-            {currentSlide === 10 && (
+            {/* SLIDE 11: TĂNG TRƯỞNG & CÂN BẰNG - PHƯƠNG THỨC THỰC HIỆN */}
+            {currentSlide === 11 && (
               <div className="flex flex-col h-[624px] justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
@@ -1404,9 +1474,9 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 </div>
                 
                 <button 
-                  id="slide10-quiz-btn"
+                  id="slide11-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
+                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
