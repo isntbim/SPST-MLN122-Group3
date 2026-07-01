@@ -69,12 +69,48 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       gsap.from('#slide2-title', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
       gsap.from('#slide2-definition', { opacity: 0, y: 35, duration: 0.9, ease: 'power3.out', delay: 0.1 });
       gsap.from('#slide2-dual-nature', { opacity: 0, x: -40, duration: 0.9, ease: 'power3.out', delay: 0.25 });
-      gsap.from('#slide2-quiz-btn', { scale: 0.9, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+      gsap.from('#slide2-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
     }
     if (currentSlide === 3) {
       gsap.from('#slide3-title', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
       gsap.from('#slide3-bottom-banner', { opacity: 0, y: 25, duration: 0.7, ease: 'power2.out', delay: 0.25 });
-      gsap.from('#slide3-quiz-btn', { scale: 0.9, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+      gsap.from('#slide3-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+    }
+    if (currentSlide === 4) {
+      gsap.from('#slide-stage h2', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide-stage .grid > div:first-child', { opacity: 0, x: -30, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+      gsap.from('#slide-stage .grid > div:last-child', { opacity: 0, scale: 0.9, duration: 0.9, ease: 'back.out(1.2)', delay: 0.25 });
+      gsap.from('#slide4-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+    }
+    if (currentSlide === 5) {
+      gsap.from('#slide-stage h2', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide-stage .grid > div:first-child', { opacity: 0, x: -30, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+      gsap.from('#slide-stage .grid > div:last-child', { opacity: 0, x: 30, duration: 0.9, ease: 'power3.out', delay: 0.25 });
+      gsap.from('#slide5-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+    }
+    if (currentSlide === 6) {
+      gsap.from('#slide-stage h2', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide-stage .grid > div:first-child', { opacity: 0, x: -30, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+      gsap.from('#slide-stage .grid > div:last-child', { opacity: 0, scale: 0.9, duration: 0.9, ease: 'back.out(1.2)', delay: 0.25 });
+      gsap.from('#slide6-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+    }
+    if (currentSlide === 7) {
+      gsap.from('#slide-stage h2', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide-stage .grid > div:first-child', { opacity: 0, y: 30, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+      gsap.from('#slide-stage .grid > div:last-child', { opacity: 0, scale: 0.95, duration: 0.9, ease: 'power3.out', delay: 0.25 });
+      gsap.from('#slide7-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+    }
+    if (currentSlide === 8) {
+      gsap.from('#slide-stage h2', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide-stage .grid > div:first-child', { opacity: 0, x: -30, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+      gsap.from('#slide-stage .grid > div:last-child', { opacity: 0, x: 30, duration: 0.9, ease: 'power3.out', delay: 0.25 });
+      gsap.from('#slide8-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+    }
+    if (currentSlide === 9) {
+      gsap.from('#slide-stage h2', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide-stage .grid > div:first-child', { opacity: 0, x: -30, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+      gsap.from('#slide-stage .grid > div:last-child', { opacity: 0, x: 30, duration: 0.9, ease: 'power3.out', delay: 0.25 });
+      gsap.from('#slide9-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
     }
     if (currentSlide === 10) {
       // Set initial scale positions on load to prevent any shift or disconnect
@@ -82,6 +118,17 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       gsap.set('#left-pan', { rotation: 12, svgOrigin: '60 40' });
       gsap.set('#right-pan', { rotation: 12, svgOrigin: '240 40' });
       gsap.set(['#weight-1', '#weight-2', '#weight-3'], { opacity: 0, y: -120 });
+
+      gsap.from('#slide-stage h2', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide-stage .grid > div:first-child', { opacity: 0, x: -30, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+      gsap.from('#slide-stage .grid > div:last-child', { opacity: 0, scale: 0.95, duration: 0.9, ease: 'power3.out', delay: 0.25 });
+      gsap.from('#slide10-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
+    }
+    if (currentSlide === 11) {
+      gsap.from('#slide-stage h2', { opacity: 0, y: -25, duration: 0.8, ease: 'power3.out' });
+      gsap.from('#slide-stage .grid > div:first-child', { opacity: 0, x: -30, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+      gsap.from('#slide-stage .grid > div:last-child', { opacity: 0, scale: 0.95, duration: 0.9, ease: 'power3.out', delay: 0.25 });
+      gsap.from('#slide11-quiz-btn', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.5)', delay: 0.4 });
     }
   }, { dependencies: [currentSlide], scope: containerRef });
 
@@ -253,6 +300,8 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
       .to('#right-pan', { rotation: 0, svgOrigin: '240 40', duration: 1.2, ease: 'elastic.out(1.2, 0.4)' }, '<');
   };
 
+  const [zoomImage, setZoomImage] = useState(false);
+
   // --- Slide 10: Integration Roadmap ---
   const [roadmapLayers, setRoadmapLayers] = useState({
     vimo: false,
@@ -384,7 +433,6 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
   };
 
   const handlePollAnswer = (optionKey) => {
-    if (pollStates[currentSlide]) return;
     const poll = slidePolls[currentSlide];
     const isCorrect = optionKey === poll.correct;
     setPollStates(prev => ({
@@ -1127,7 +1175,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 7: MỤC TIÊU PHÁT TRIỂN */}
             {currentSlide === 7 && (
-              <div className="flex flex-col h-[624px] justify-between">
+              <div className="flex flex-col h-[624px] w-full justify-between">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần A1)</span>
@@ -1140,7 +1188,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                   </p>
                   
                   <div className="grid grid-cols-12 gap-8 my-auto py-2 items-center">
-                    <div className="col-span-7 bg-slate-950/60 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
+                    <div className="col-span-5 bg-slate-950/60 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4 h-[460px] flex flex-col justify-center">
                       <div>
                         <h4 className="text-base font-black text-vngold-400 uppercase tracking-widest mb-2 flex items-center">
                           <i className="fa-solid fa-bullseye mr-2 text-vnred-500"></i>Mục tiêu tối thượng
@@ -1160,8 +1208,15 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                       </div>
                     </div>
 
-                    <div className="col-span-5 bg-slate-950/40 border border-slate-850 rounded-3xl p-3 flex items-center justify-center overflow-hidden shadow-xl h-[330px]">
-                      <img src="/image1.png" alt="Mục tiêu phát triển" className="w-full h-full rounded-2xl object-cover" />
+                    <div 
+                      onClick={() => setZoomImage(true)}
+                      className="col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-3 flex flex-col items-center justify-center overflow-hidden shadow-xl h-[460px] cursor-zoom-in hover:border-vngold-400/50 group transition-colors duration-300 relative"
+                    >
+                      <img src={`${import.meta.env.BASE_URL}image1.png`} alt="Mục tiêu phát triển" className="w-full h-full rounded-2xl object-contain group-hover:scale-[1.01] transition-transform duration-300" />
+                      <div className="absolute bottom-4 right-4 bg-slate-950/85 backdrop-blur-md border border-slate-800 text-xs text-slate-300 px-3 py-1.5 rounded-xl flex items-center space-x-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg pointer-events-none">
+                        <i className="fa-solid fa-magnifying-glass-plus text-vngold-400"></i>
+                        <span>Click để phóng to</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1169,7 +1224,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 <button 
                   id="slide7-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1179,7 +1234,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 8: CƠ CẤU SỞ HỮU & THÀNH PHẦN KINH TẾ */}
             {currentSlide === 8 && (
-              <div className="flex flex-col h-[624px] justify-between">
+              <div className="flex flex-col h-[624px] w-full justify-between relative">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần A2)</span>
@@ -1225,7 +1280,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 <button 
                   id="slide8-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1235,7 +1290,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 9: QUẢN LÝ & PHÂN PHỐI */}
             {currentSlide === 9 && (
-              <div className="flex flex-col h-[624px] justify-between">
+              <div className="flex flex-col h-[624px] w-full justify-between relative">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần B)</span>
@@ -1271,7 +1326,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 <button 
                   id="slide9-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1281,7 +1336,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 10: TĂNG TRƯỞNG & CÂN BẰNG - PHẦN 1: BẢN CHẤT & VAI TRÒ KÉP */}
             {currentSlide === 10 && (
-              <div className="flex flex-col h-[624px] justify-between relative">
+              <div className="flex flex-col h-[624px] w-full justify-between relative">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần C1)</span>
@@ -1386,7 +1441,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 <button 
                   id="slide10-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1396,7 +1451,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
             {/* SLIDE 11: TĂNG TRƯỞNG & CÂN BẰNG - PHƯƠNG THỨC THỰC HIỆN */}
             {currentSlide === 11 && (
-              <div className="flex flex-col h-[624px] justify-between">
+              <div className="flex flex-col h-[624px] w-full justify-between relative">
                 <div>
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="bg-vnred-955 text-vnred-400 border border-vnred-800 text-base font-extrabold px-3 py-1 rounded">Mục 5.1.3 (Phần C2)</span>
@@ -1476,7 +1531,7 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                 <button 
                   id="slide11-quiz-btn"
                   onClick={() => setIsFlipped(true)}
-                  className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse z-20"
+                  className="mx-auto px-6 py-2.5 bg-vnemerald-600 hover:bg-vnemerald-700 text-white font-extrabold text-sm sm:text-base rounded-xl shadow-md flex items-center space-x-2 transition-all uppercase tracking-wider cursor-pointer animate-pulse"
                 >
                   <i className="fa-solid fa-rotate text-base"></i>
                   <span>Luyện tập: Câu hỏi củng cố</span>
@@ -1507,7 +1562,6 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
                     {slidePolls[currentSlide].options.map(opt => (
                       <button 
                         key={opt.key}
-                        disabled={!!pollStates[currentSlide]}
                         onClick={() => handlePollAnswer(opt.key)}
                         className={`text-left p-5 rounded-2xl bg-slate-900 border text-base sm:text-lg font-bold transition-all duration-200 leading-relaxed flex items-center space-x-4 cursor-pointer ${
                           pollStates[currentSlide]?.option === opt.key 
@@ -1567,6 +1621,28 @@ export default function PresenterStage({ currentSlide, onSlideChange }) {
 
         </div>
       </div>
+
+      {/* Click-to-Zoom Modal overlay */}
+      {zoomImage && (
+        <div 
+          className="fixed inset-0 z-[999] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-6 cursor-zoom-out"
+          onClick={() => setZoomImage(false)}
+        >
+          <div className="relative max-w-[95vw] max-h-[90vh] bg-slate-900 border border-slate-800 rounded-3xl p-2 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+            <img 
+              src={`${import.meta.env.BASE_URL}image1.png`} 
+              alt="Mục tiêu phát triển phóng to" 
+              className="w-auto h-auto max-w-[90vw] max-h-[85vh] object-contain rounded-2xl" 
+            />
+            <button 
+              className="absolute top-4 right-4 bg-slate-950/60 hover:bg-vnred-600 text-white rounded-full p-2.5 transition-colors border border-slate-800 cursor-pointer"
+              onClick={() => setZoomImage(false)}
+            >
+              <i className="fa-solid fa-xmark text-lg"></i>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
